@@ -1,0 +1,279 @@
+
+<template id="tpl_my" title="我的">
+    <div class="page">
+
+        <div class="box">
+
+            <!--个人信息区域-->
+            <div class="personal_center_box">
+                <div class="blk-info hidden">
+                    <div><img class="img3 user-avatar" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" /></div>
+                    <p class="mt5 fz14 lh16 user-nickname">Name</p>
+                    <p class="mt5 fz16 lh18 fwb">累计捐赠公益金</p>
+                    <p class="mt10 fz24 lh24 cor_6"><span class="txt-money">.</span><span class="fz16">元</span></p>
+                    <p class="mt5 fz16 lh16"><span class="mr10 cor_6 txt-line">MINI线</span>当前排名第<span class="mar1 cor_6"><span class="txt-ranking">.</span></span>名</p>
+                    <p class="mt10 lh14">预报名人数:<span class="mar1"><span class="txt-members">.</span>人</span><span class="mr5 cor_f tdu btn-show-players">报名详情</span><i class="ico_arrow"></i></p>
+                </div>
+                <div class="page-loading" style="text-align: center; padding-top: 28%; padding-bottom: 28%; background-color: transparent">
+                    <i class="weui-loading"></i>
+                </div>
+            </div><!--个人信息区域-->
+
+            <!--公益排行榜-->
+            <div class="re pt5 pb5 pr25 pl30 btn-ranking hidden">
+                <div class="flex_box lh25">
+                    <div class="item"><i class="ico_love_mark_00 mr5"></i><span class="cor_5">公益排行榜</span></div>
+                    <div class="pr20">
+                        <span class="di mr5"><img src="images/0.jpg" class="img4 rank1-avatar"></span>
+                        <span class="di mr5"><img src="images/0.jpg" class="img4 rank2-avatar"></span>
+                        <span class="di mr5"><img src="images/0.jpg" class="img4 rank3-avatar"></span>
+                    </div>
+                </div>
+                <i class="ico_arrow_01"></i>
+            </div><!--公益排行榜-->
+
+            <div class="pa15 bgf tac status-bar status-bar-released hidden">
+                <p class="mt15 fz14 cor_5 lh20"><i class="ico_love_mark_01 mr5"></i>很遗憾，您因逾期未补充报名信息<br/>名额已被释放！</p>
+                <p class="fz14 cor_5 lh20">非常感谢您的公益募捐以及对贫困青少年人群的帮扶，让爱心汇聚，让希望延续。</p>
+                <p class="fz14 cor_5 lh20">希望您继续<span class="tdu btn-about" style="color: #00a9ff">关注本次公益活动</span></p>
+
+                <!--按钮-->
+                <div class="pb25">
+                    <div class="mt10"><a href="javascript:void(0);" class="btn_10 btn-honor">领取我的毅行称号</a></div>
+                </div>
+            </div>
+
+            <div class="pa15 bgf tac status-bar status-bar-norank hidden">
+                <p class="mt15 fz14 cor_5 lh20"><i class="ico_love_mark_01 mr5"></i>很遗憾，您未能成功获取毅行名额！</p>
+                <p class="fz14 cor_5 lh20">非常感谢您的公益募捐以及对贫困青少年人群的帮扶，让爱心汇聚，让希望延续。</p>
+                <p class="fz14 cor_5 lh20">希望您继续<span class="tdu btn-about" style="color: #00a9ff">关注本次公益活动</span></p>
+
+                <!--按钮-->
+                <div class="pb25">
+                    <div class="mt10"><a href="javascript:void(0);" class="btn_10 btn-honor">领取我的毅行称号</a></div>
+                </div>
+            </div>
+
+
+            <div class="pa15 bgf tac status-bar status-bar-rankok hidden">
+                <p class="mt15 fz14 cor_5 lh20"><i class="ico_love_mark_01 mr5"></i>恭喜您，在公益排行榜中脱颖而出！</p>
+                <p class="fz14 cor_5 lh20">获得2018环巢湖毅行大会名额！</p>
+                <p class="fz14 cor_5 lh20">快去完善并确认您的报名资料吧！</p>
+
+                <!--按钮-->
+                <div class="pb25">
+                    <div class="mt10"><a href="javascript:void(0);" class="btn_10 btn-players">完善报名资料</a></div>
+                </div>
+            </div>
+
+
+            <div class="pa15 bgf tac status-bar status-bar-confirmed hidden">
+                <p class="mt15 fz14 cor_5 lh20"><i class="ico_love_mark_01 mr5"></i>恭喜您获得2018环巢湖毅行大会名额！</p>
+                <p class="fz14 cor_5 lh20">请您携带相关物资领取材料于 <span style="color: #00a9ff">5月12日/5月13日 9:30~18:00</span> 前往 <span style="color: #00a9ff" class="txt-supply_loc"></span> 领取您的毅行物资，过期将自动作废，请知晓！</p>
+
+                <!--按钮-->
+                <div class="pb25">
+                    <div class="mt10"><a href="javascript:void(0);" class="btn_10 btn-honor">领取我的毅行称号</a></div>
+                </div>
+            </div>
+
+            <div class="pa15 bgf tac status-bar status-bar-ranking hidden">
+                <p class="mt15 fz14 cor_5 lh20"><i class="ico_love_mark_01 mr5"></i><span class="txt-water-line">排名越靠前，毅行名额的获取几率越大哦！</span></p>
+                <p class="fz14 cor_5 lh20">快去邀请您的好友加入爱心助力吧！</p>
+
+                <!--按钮-->
+                <div class="pb25">
+                    <div class="mt25"><a href="javascript:void(0);" class="btn_8 btn-share">领取专属海报 邀请好友助力</a></div>
+                </div>
+            </div>
+
+
+
+            <!--爱心助力记录-->
+            <div class="mt10 bgf blk-zhuli">
+                <p class="fz16 lh42 bb2 cor_7"><span class="ml30">爱心助力记录</span></p>
+                <table class="rank_table">
+                    <colgroup>
+                        <col style="width: 20%;" />
+                        <col style="width: 80%" />
+                    </colgroup>
+                    <tbody>
+                    </tbody>
+                </table>
+
+                <div class="list-loadmore bgf btn-votelist" style="padding-top: 1.5em; padding-bottom: 1.5em; text-align: center; font-size: 14px;">
+                    查看更多
+                </div>
+            </div>
+
+            <div class="medal_voyager_fixed btn-medal"><i class="ico_voyager_medal"></i></div>
+        </div><!--box-->
+
+        <div class="nav-blank"></div>
+        <script type="text/javascript">
+            $(function() {
+                var PageData = {};
+                var Page = current_page();
+                var info = Page.find('.blk-info');
+                var zhuli = Page.find('.blk-zhuli');
+
+                Page.find('.btn-votelist').click(function() {
+                    window.location.hash = '#votelist';
+                    setTimeout(function() {
+                        VoteListController.load(PageData.threadid);
+                    }, window.waitTime);
+                });
+                Page.find('.btn-ranking').click(function() {
+                    window.location.hash = '#ranking';
+                });
+                Page.find('.btn-show-players').click(function() {
+                    window.location.hash = '#players';
+                    setTimeout(function() {
+                        window.PlayersController.load(PageData.players, true);
+                    }, window.waitTime);
+                });
+                Page.find('.btn-players').click(function() {
+                    window.location.hash = '#players';
+                    setTimeout(function() {
+                        window.PlayersController.load(PageData.players);
+                    }, window.waitTime);
+                });
+                Page.find('.btn-share').click(function() {
+                    window.location.hash = '#tuiguang';
+                    setTimeout(function() {
+                        TuiguangController.load(PageData.threadid);
+                    }, window.waitTime);
+                });
+                Page.find('.btn-honor').click(function() {
+                    window.location.hash = '#honor';
+                    setTimeout(function() {
+                        HonorController.load(PageData.threadid);
+                    }, window.waitTime);
+                });
+                Page.find('.btn-about').click(function() {
+                    location.href = "http://yx.365jia.cn/yx2018";
+                });
+                Page.find('.btn-medal').click(function() {
+                    if (PageData.donate <= 0) {
+                        weui_alert('捐赠后才能获得捐赠证书');
+                        return;
+                    }
+
+                    window.location.hash = '#cert';
+                    setTimeout(function() {
+                        TuiguangController.load(PageData.threadid);
+                    }, window.waitTime);
+                });
+
+                var loading = Page.find('.page-loading');
+                var buttons = Page.find('.buttons');
+
+                function reloadPage()
+                {
+                    loading.removeClass('hidden');
+                    buttons.addClass('hidden');
+                    Page.find('.status-bar').addClass('hidden');
+                    Page.find('.btn-ranking').addClass('hidden');
+                    Page.find('.rank1-avatar,.rank2-avatar,.rank3-avatar').addClass('hidden');
+                    info.addClass('hidden');
+                    zhuli.addClass('hidden');
+
+                    $.get('user', function(ret) {
+                        //微信认证校验失败
+                        if (ret.code === 10014) {
+                            location.href = '/yx2018/start?from=token_expired:my_load';
+                            return;
+                        }
+
+                        loading.addClass('hidden');
+                        info.removeClass('hidden');
+                        Page.find('.btn-ranking').removeClass('hidden');
+
+
+                        PageData = ret.data;
+                        Page.find('.status-bar-' + PageData.status).removeClass('hidden');
+
+                        if (PageData.registed) {
+                            Page.find('.user-avatar').attr('src', PageData.info.headimgurl);
+                            Page.find('.user-nickname').text(PageData.info.nickname);
+                            Page.find('.txt-money').text(PageData.donate);
+                            Page.find('.txt-line').text(PageData.players[0].txt_line);
+                            Page.find('.txt-supply_loc').text(PageData.players[0].txt_supply_loc);
+                            Page.find('.txt-members').text(PageData.players.length);
+                            if (PageData.water_line) {
+                                Page.find('.txt-water-line').text('截至' + PageData.water_line.time + '数据，'+PageData.players[0].txt_line+'前' + PageData.water_line.rank + '名将有机会获得毅行名额!');
+                            } else {
+                                Page.find('.txt-water-line').text('排名越靠前，毅行名额的获取几率越大哦！');
+                            }
+
+                            if (PageData.donate > 0) {
+                                Page.find('.btn-medal').addClass('current');
+                            } else {
+                                Page.find('.btn-medal').removeClass('current');
+                            }
+
+
+                            if (PageData.ranking == 0) {
+                                Page.find('.txt-ranking').text('-');
+                            } else {
+                                Page.find('.txt-ranking').text(PageData.ranking);
+                            }
+                        } else {
+                            Cookies.set('yx2018:err_msg', '您暂未预约报名，预约报名后可进入个人中心');
+                            location.href = '/yx2018';
+                            return;
+                        }
+
+                        zhuli.find('tr').remove();
+                        if (PageData.new_voters.data.length) {
+                            zhuli.removeClass('hidden');
+
+                            var tmp = $('#cell_vote').get(0);
+                            $.each(PageData.new_voters.data, function(i) {
+                                var dom = document.importNode(tmp.content.children[0], true);
+                                var $dom = $(dom);
+                                $dom.find('.txt-name').text(this.nickname);
+                                $dom.find('.txt-time').text(this.time);
+                                $dom.find('.txt-donate').text(this.donate);
+                                $dom.find('.avatar').attr('src', this.headimgurl);
+                                zhuli.find('tbody').append(dom);
+                            });
+
+                            if (PageData.new_voters.has_more) {
+                                zhuli.find('.list-loadmore').removeClass('hidden');
+                            } else {
+                                zhuli.find('.list-loadmore').addClass('hidden');
+                            }
+                        }
+
+                        for (var i = 0; i < PageData.top3.length; i++) {
+                            Page.find('.rank' + (i+1) + '-avatar').removeClass('hidden').attr('src', PageData.top3[i].headimgurl);
+                        }
+
+
+                        buttons.removeClass('hidden');
+                    });
+                }
+
+                reloadPage();
+
+                window.UserController = {
+                    reloadPage: reloadPage,
+                    showGongyiAlert: function(threadid) {
+                        weui_alert({
+                            'title': '提示',
+                            'msg': '我们为您准备了个人专属公益募捐海报，快去领取分享给好友们募捐助力吧！',
+                            'okText': '去领取',
+                            'onOk': function () {
+                                window.location.hash = '#tuiguang';
+                                setTimeout(function() {
+                                    TuiguangController.load(threadid);
+                                }, 200)
+                            }
+                        });
+                    }
+                };
+            });
+        </script>
+    </div>
+</template>

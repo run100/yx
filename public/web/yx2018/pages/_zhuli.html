@@ -1,0 +1,489 @@
+
+<template id="tpl_honor" title="毅行称号">
+    <div class="page">
+        <div class="box">
+
+            <div class="page-panel">
+                <!--头部-操作提示-->
+                <div class="save_prompt_img"><p class="fz14 tac cor_f">长按可保存图片！</p></div>
+
+                <div class="img-indent">
+                    <!--解决iOS微信下图片加载不全的问题;搞不清为什么，反正这样能解决,Shit!-->
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
+                </div>
+
+                <img class="img-tuiguang wp100" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" />
+
+            </div>
+
+            <div class="save_prompt_img block-busy hidden"><p class="fz14 tac cor_f">报名太过火热，请稍候再进本页面查看...</p></div>
+        </div><!--box-->
+
+        <div class="nav-blank"></div>
+        <script type="text/javascript">
+            $(function() {
+                var Page = current_page();
+                var img = Page.find('.img-tuiguang');
+                var busy = Page.find('.block-busy');
+                var panel = Page.find('.page-panel');
+
+                img.error(function() {
+                    panel.addClass('hidden');
+                    busy.removeClass('hidden');
+                });
+
+                img.get(0).onload = function() {
+                    if (/^http:\/\//.test(this.src)) {
+                        Page.find('.img-indent').remove();
+                    }
+                };
+
+                window.HonorController = {
+                    load: function(threadid) {
+                        img.attr('src', '/uploads/yx2018/covers/honor_' + threadid + '.jpg');
+                    }
+                };
+            });
+        </script>
+    </div>
+</template>
+
+
+<template id="tpl_tuiguang" title="推广海报">
+    <div class="page">
+        <div class="box">
+
+            <div class="page-panel">
+                <!--头部-操作提示-->
+                <div class="save_prompt_img"><p class="fz14 tac cor_f">长按可保存图片！</p></div>
+
+                <div class="img-indent">
+                    <!--解决iOS微信下图片加载不全的问题;搞不清为什么，反正这样能解决,Shit!-->
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
+                </div>
+
+                <img class="img-tuiguang wp100" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" />
+
+            </div>
+
+            <div class="save_prompt_img block-busy hidden"><p class="fz14 tac cor_f">报名太过火热，请稍候再进本页面查看...</p></div>
+        </div><!--box-->
+
+        <div class="nav-blank"></div>
+        <script type="text/javascript">
+            $(function() {
+                var Page = current_page();
+                var img = Page.find('.img-tuiguang');
+                var busy = Page.find('.block-busy');
+                var panel = Page.find('.page-panel');
+
+                img.error(function() {
+                    panel.addClass('hidden');
+                    busy.removeClass('hidden');
+                });
+
+                img.get(0).onload = function() {
+                    if (/^http:\/\//.test(this.src)) {
+                        Page.find('.img-indent').remove();
+                    }
+                };
+
+                window.TuiguangController = {
+                    load: function(threadid) {
+                        img.attr('src', '/uploads/yx2018/covers/' + threadid + '.png');
+                    }
+                };
+            });
+        </script>
+    </div>
+</template>
+
+<template id="tpl_cert" title="捐助证书">
+    <div class="page">
+        <div class="box">
+
+            <div class="page-panel">
+                <!--头部-操作提示-->
+                <div class="save_prompt_img"><p class="fz14 tac cor_f">长按保存图片，获取你的捐赠证书！</p></div>
+
+                <div class="img-indent">
+                    <!--解决iOS微信下图片加载不全的问题;搞不清为什么，反正这样能解决,Shit!-->
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
+                </div>
+
+                <img class="img-tuiguang wp100" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" />
+            </div>
+
+            <div class="save_prompt_img block-busy hidden"><p class="fz14 tac cor_f">报名太过火热，请稍候再进本页面查看...</p></div>
+        </div><!--box-->
+
+        <div class="nav-blank"></div>
+        <script type="text/javascript">
+            $(function() {
+                var Page = current_page();
+                var img = Page.find('.img-tuiguang');
+                var busy = Page.find('.block-busy');
+                var panel = Page.find('.page-panel');
+
+                img.error(function() {
+                    panel.addClass('hidden');
+                    busy.removeClass('hidden');
+                });
+
+                img.get(0).onload = function() {
+                    if (/^http:\/\//.test(this.src)) {
+                        Page.find('.img-indent').remove();
+                    }
+                };
+
+                window.TuiguangController = {
+                    load: function(threadid) {
+                        img.attr('src', '/uploads/yx2018/covers/cert_' + threadid + '.png');
+                    }
+                };
+            });
+        </script>
+    </div>
+</template>
+
+
+<template id="tpl_zhuli" title="助力">
+    <div class="page">
+        <div class="box">
+
+            <div class="re"><img src="images/banner_02.jpg" class="wp100"></div>
+
+            <div class="re">
+                <div class="content_area_pos">
+                    <div class="pl30 pr30">
+                        <div class="mt5 love_power_box">
+                            <p class="fz16 lh20">您正在为好友 <span class="ml5 cor_5 txt-nickname">.</span></p>
+                            <p class="fz16 lh20">进行公益爱心助力</p>
+                            <p class="mt25 fz16 lh20 fwb">捐赠<span class="cor_5">1元</span>公益金</p>
+                            <p class="fz16 lh20">至<span class="cor_5">“安徽省青少年发展基金会”</span></p>
+
+                            <!--按钮-->
+                            <div class="mt30"><a href="javascript:void(0);" class="btn_4 btn-pay"><i class="weui-loading hidden"></i>去捐赠</a></div>
+                            <div class="mt10"><a href="/yx2018" class="btn_5 btn-home">我要预约名额</a></div>
+                            <div class="pt5 tar pr25"><i class="ico_activities_that"></i><a href="javascript:;" class="ml5 tdu cor_5 btn-rule">活动说明</a></div>
+                        </div>
+                    </div><!--pl30 pr30-->
+                </div><!--content_area_pos-->
+                <img src="images/banner_03.jpg" class="wp100">
+            </div><!--re-->
+
+        </div><!--box-->
+
+
+        <script type="text/javascript">
+            $(function() {
+                var Page = current_page();
+                Page.find('.txt-nickname').text(Cookies.get('js:yx2018:thread_nickname'));
+
+                Page.find('.btn-rule').click(function() {
+                    location.hash = '#rule';
+                });
+                Page.find('.btn-pay').click(function() {
+
+                    var loading = $(this).find('.weui-loading');
+
+                    if ($(this).find('.weui-loading:visible').size()) {
+                        return false;
+                    }
+
+                    loading.removeClass('hidden');
+
+                    $.post('make_order', function(ret) {
+                        if (ret.code !== 0) {
+                            loading.addClass('hidden');
+                            weui_alert(ret.msg);
+                            return;
+                        }
+
+                        loading.addClass('hidden');
+                        WeixinJSBridge.invoke(
+                            'getBrandWCPayRequest', ret.data,
+                            function(res){
+                                if(res.err_msg == "get_brand_wcpay_request:ok" ) {
+                                    window.location.hash = '#zhuli_success';
+                                }
+                            }
+                        );
+                    }, 'json').fail(function(ret) {
+                        loading.addClass('hidden');
+                        showError(ret);
+                    });
+                });
+            });
+        </script>
+    </div>
+</template>
+
+<template id="tpl_zhuli_success" title="助力">
+    <div class="page">
+        <div class="box">
+
+            <div class="re"><img src="images/banner_02.jpg" class="wp100"></div>
+
+            <div class="re">
+                <div class="content_area_pos">
+                    <div class="pl30 pr30">
+                        <div class="mt5"><img src="images/ico_red_envelope.png?v2" class="wp100"></div>
+                        <div class="red_envelope_sty">
+                            <p class="fz16 lh16 cor_f">您已成功为好友完成爱心助力</p>
+                            <!--按钮-->
+                            <div class="mt20"><a href="/yx2018" class="btn_7">我要预约名额</a></div>
+                        </div><!--red_envelope_sty-->
+
+                    </div><!--pl30 pr30-->
+                </div><!--content_area_pos-->
+                <img src="images/banner_03.jpg" class="wp100">
+            </div><!--re-->
+
+
+        </div><!--box-->
+    </div>
+</template>
+
+
+<template id="cell_vote">
+    <tr class="cell-item">
+        <td><span><img class="avatar" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" /></span></td>
+        <td>
+            <p class="mt5 fz16 lh16"><span class="mr5 cor_7 txt-name">Name</span>捐赠了<em class="ml5 cor_5"><span class="txt-donate">x</span>元</em></p>
+            <p class="mt5 fz14 lh14 txt-time">Time</p>
+        </td>
+    </tr>
+</template>
+<template id="cell_vote0">
+    <span href="javascript:void(0);" class="weui-media-box weui-media-box_appmsg cell-item">
+        <div class="weui-media-box__hd">
+            <img class="avatar weui-media-box__thumb img3" style="height: 50px; width:50px;" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" alt="">
+        </div>
+        <div class="weui-media-box__bd">
+            <h4 class="weui-media-box__title">
+                <span class="txt-name">Name</span>
+            </h4>
+            <p class="weui-media-box__desc"><span class="txt-time">Time</span> 捐助了<em class="ml5 cor_5"><span class="txt-donate">x</span>元</em></p>
+        </div>
+    </span>
+</template>
+<template id="tpl_votelist" title="助力者列表">
+    <div class="page">
+        <div class="page__bd" style="height: 100%;">
+            <div class="votelist">
+                <div class="list-loading weui-loadmore">
+                    <i class="weui-loading"></i>
+                    <span class="weui-loadmore__tips">正在加载</span>
+                </div>
+                <div class="list-loadmore hidden" style="background: #f1f1f1; padding-top: 1.5em; padding-bottom: 1.5em; text-align: center; font-size: 14px;">
+                    点击加载更多
+                </div>
+            </div>
+        </div>
+
+        <script type="text/javascript">
+            $(function() {
+                var Page = current_page();
+                var PageData = {};
+
+                var list = Page.find('.votelist');
+                var loadmore = Page.find('.list-loadmore');
+                var loading = Page.find('.list-loading');
+                var nextpos = 0;
+                var threadid;
+
+                loadmore.click(function() {
+                    loadMore();
+                });
+
+                function loadMore()
+                {
+                    loadmore.addClass('hidden')
+                    loading.removeClass('hidden');;
+                    if (nextpos === false) {
+                        return false;
+                    }
+
+                    return $.get('votelist', {threadid: threadid, pos: nextpos}, function(ret) {
+                        if (!PageData.data) {
+                            PageData.data = [];
+                        }
+                        PageData.data = PageData.data.concat(ret.data.data);
+
+                        PageData = ret.data.data;
+                        if (ret.data.has_more) {
+                            nextpos = ret.data.next_pos;
+                            loadmore.removeClass('hidden');
+                        } else {
+                            nextpos = false;
+                            loadmore.addClass('hidden');
+                        }
+
+                        var tmp = $('#cell_vote0').get(0);
+                        $.each(PageData, function(i) {
+                            var dom = document.importNode(tmp.content.children[0], true);
+                            var $dom = $(dom);
+                            $dom.find('.txt-name').text(this.info.nickname);
+                            $dom.find('.txt-time').text(this.time);
+                            $dom.find('.txt-donate').text(this.donate);
+                            $dom.find('.avatar').attr('src', this.info.headimgurl);
+                            loading.before($dom);
+                        });
+                    }).always(function() {
+                        loading.addClass('hidden');
+                    });
+                }
+
+
+                window.VoteListController = {
+                    load: function(id) {
+                        threadid = id;
+                        list.find('.cell-item').remove();
+                        nextpos = 0;
+
+                        loadMore();
+                    },
+                    loadMore: function() {
+                        loadMore();
+                    }
+                };
+            });
+        </script>
+    </div>
+</template>

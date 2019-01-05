@@ -1,0 +1,153 @@
+{{-- 启用WEUI模板构建单页面应用 --}}
+@extends('zhuanti::common.weui')
+
+
+
+@lconfig([
+    'js_wxsdk'      => true,    //配置模板参数，开启微信SDK
+    'js_cookie'     => true,    //开启JS-COOKIE库
+])
+
+
+
+@section('head')
+{{-- 配置模板数据源，以及设置首页每隔10分钟整点缓存 --}}
+<meta name="wanjia-data" content="Controller@index" />
+<meta name="wanjia-perms" content="cache:E600" />
+@parent
+@stop
+
+
+
+{{-- 页面SEO --}}
+@section('title', '')
+@section('keywords', '2018环巢湖毅行大会')
+@section('description', '大湖名城 青春毅行-2018环巢湖毅行大会，5月19日，毅起出发！')
+
+
+
+{{-- 微信右上角分享参数 --}}
+@section('weixin_share')
+{
+    title: "我正在参与2018环巢湖毅行大会名额预约，一起来吧！",
+    desc: "大湖名城 青春毅行-2018环巢湖毅行大会，5月19日，毅起出发！",
+    link: "http://zt.365jia.cn/yx2018/start?from=share",
+    imgUrl: "http://zt.365jia.cn/yx2018/images/ico_share.jpg",
+    success: function() {
+    //分享成功,可加统计逻辑
+    },
+    cancel: function() {
+    //分享被取消
+    }
+}
+@stop
+
+
+
+{{-- 附加样式表 --}}
+@section('styles')
+@parent
+<link rel="stylesheet" type="text/css" media="screen" href="style/mobile-basic2.1.css" />
+<link rel="stylesheet" type="text/css" href="style/css.css">
+<style type="text/css">
+    .weui-media-box__title-after {
+        color: #9b9b9b;
+        font-size: .65rem;
+        float: right;
+    }
+
+    .cor_gray {
+        color: #757575;
+    }
+
+    .page-loading {
+        background-color: #f8f8f8;
+    }
+
+    .weui-dialog__hd {
+        font-size: 18px;
+    }
+
+    .rank-me {
+        background-color: #e3f2fd;
+    }
+</style>
+@stop
+
+
+{{-- 页首JS:会被最优先执行 --}}
+@section('front_scripts')
+@parent
+<script type="text/javascript" src="/yx2018/js/rem.js"></script>
+<script type="text/javascript">
+    var waitTime = 200;
+    var fieldConfs = @json($fields);
+
+    window.onerror = function(msg, url, line) {
+        //weui_alert(msg + '[' + line + ']');
+    };
+
+    (function () {
+        if (!Cookies.get('js:yx2018:login')) {
+            location.replace('/yx2018/start?from=token_expired:nologin');
+            return;
+        }
+
+        var canRefresh = ['#home', '#my', '#ranking', '#rule', '#search', '#chaxun'];
+        if (location.hash && (canRefresh.indexOf(location.hash) === -1)) {
+            location.replace('/yx2018');
+            return;
+        }
+
+        if (Cookies.get('js:yx2018:act') === 'vote') {
+            Cookies.remove('js:yx2018:act');
+            location.hash = '#zhuli';
+            return;
+        }
+    })();
+</script>
+@stop
+
+
+
+{{-- 页尾JS:最后执行 --}}
+@section('scripts')
+@parent
+<script type="text/javascript">
+    $(function() {
+        if (Cookies.get('yx2018:err_msg')) {
+            weui_alert(Cookies.get('yx2018:err_msg'));
+            Cookies.remove('yx2018:err_msg');
+        }
+    });
+</script>
+
+
+{{-- _nav中含有fixed定位，必须放置在body关闭标签之前;否则iOS版微信上有拖动Bug --}}
+@include('web::yx2018._nav')
+@stop
+
+
+
+@section('pages')
+{{-- 首页 --}}
+@include('web::yx2018.pages._home')
+
+{{-- 活动说明 --}}
+@include('web::yx2018.pages._rule')
+
+{{-- 排行榜 --}}
+@include('web::yx2018.pages._ranking')
+
+{{-- 个人中心 --}}
+@include('web::yx2018.pages._my')
+
+{{-- 报名相关页面: 同意书、选人数、报名表、报名成功 --}}
+@include('web::yx2018.pages._register')
+
+{{-- 报名查询相关页面: 查询表单、出错提示1、出错提示2、选手列表(个人中心报名详情和补充资料都是它) --}}
+@include('web::yx2018.pages._chaxun')
+
+{{-- 助力相关页面: 海报、证书、助力二维码着陆页、助力成功页、助力者列表 --}}
+@include('web::yx2018.pages._zhuli')
+@stop

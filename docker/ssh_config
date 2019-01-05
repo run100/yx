@@ -1,0 +1,4 @@
+Host git
+HostName 60.173.236.97
+Port 6622
+User git

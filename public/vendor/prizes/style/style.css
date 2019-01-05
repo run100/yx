@@ -1,0 +1,114 @@
+body {
+    background: #da4026;
+    padding-bottom: 52px;
+}
+
+.box {
+    font-size: 12px;
+    color: #fff;
+}
+
+.wp100 {
+    width: 100%;
+}
+
+.date_1 {
+    position: absolute;
+    left: 50%;
+    margin-left: -88px;
+    top: 86%;
+}
+
+.bottom_nav {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    z-index: 3;
+    padding: 4px 0 10px;
+    text-align: center;
+    background-color: #ff7b3b;
+    line-height: normal;
+}
+
+.flex_box {
+    display: -webkit-box;
+    display: -moz-box;
+    display: -o-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    width: 100%;
+}
+
+.flex_box .item {
+    display: block;
+    -moz-box-flex: 1;
+    -o-box-flex: 1;
+    -webkit-box-flex: 1;
+    -ms-flex: 1;
+    -webkit-flex: 1;
+    -flex-flex: 1;
+    flex: 1;
+}
+
+.bottom_nav a span {
+    margin-top: -4px;
+    display: block;
+    color: #fff;
+    font-size: 11px;
+}
+
+.bottom_nav_1 {
+    display: inline-block;
+    width: 24px;
+    height: 24px;
+    background: url("../images/bottom_nav_ico.png") no-repeat 0px 0px;
+    background-size: 50px;
+}
+
+.bottom_nav_2 {
+    display: inline-block;
+    width: 24px;
+    height: 24px;
+    background: url("../images/bottom_nav_ico.png") no-repeat -24px 0px;
+    background-size: 50px;
+}
+
+.ticket_container {
+    background-color: #ffbfb5;
+    color: #000;
+    border-radius: 5px;
+    padding: 0 0 20px 35px;
+}
+
+.ticket_container p {
+    margin-bottom: -5px;
+}
+
+.title_box {
+    margin: 0 19% 8px;
+    padding: 2px 0;
+    width: 50%;
+    font-weight: bolder;
+    font-size: 14px;
+    color: #ffbfb5;
+    background: #fb6f56;
+    border-radius: 0 0 5px 5px;
+}
+
+.rank_table {
+    width: 100%;
+}
+
+.rank_table td {
+    padding-left: 12px;
+    line-height: 18px;
+    font-size: 11px;
+    color: #fff;
+    border: 1px solid #fff;
+}
+
+table tbody:nth-child(odd) {
+    background: #e05536;
+}

@@ -1,0 +1,40 @@
+[req]
+distinguished_name = req_distinguished_name
+req_extensions = v3_req
+
+[v3_req] 
+keyUsage = keyEncipherment, dataEncipherment
+extendedKeyUsage = serverAuth
+subjectAltName = @alt_names
+
+[req_distinguished_name]
+commonName_default = goodjobs.lab
+organizationName_default = CloudHR
+organizationalUnitName_default = Tech
+localityName_default = 合肥市
+stateOrProvinceName_default = 安徽省
+countryName_default = CN
+emailAddress_default = cloudhr@365jia.cn
+
+countryName = Country Name (2 letter code)
+stateOrProvinceName = State or Province Name (full name)
+localityName = Locality Name (eg, city)
+organizationalUnitName	= Organizational Unit Name (eg, section)
+commonName = Common Name (eg, YOUR name)
+commonName_max	= 64
+emailAddress = Email Address
+emailAddress_max = 40
+
+[alt_names]
+DNS.1 = *.goodjobs.lab
+DNS.2 = *.365jia.lab
+DNS.3 = *.365lin.lab
+DNS.4 = *.cloudhr.lab
+DNS.5 = goodjobs.lab
+DNS.6 = 365jia.lab
+DNS.7 = 365lin.lab
+DNS.8 = cloudhr.lab
+DNS.9 = cloudhr.goodjobs.cn
+DNS.10 = *.cloudhr.goodjobs.cn
+DNS.11 = 365shequ.com
+DNS.12 = *.365shequ.com

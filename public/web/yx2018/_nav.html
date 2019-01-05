@@ -1,0 +1,59 @@
+
+
+<div class="fix_bottom bottom_nav hidden">
+    <div class="flex_box blk-nav">
+        <a class="item" href="javascript:;" data-nav="#"><i class="bottom_nav_1"></i><span>首页</span></a>
+        <a class="item" href="javascript:;" data-nav="#rule"><i class="bottom_nav_2"></i><span>活动说明</span></a>
+        <a class="item" href="javascript:;" data-nav="#ranking"><i class="bottom_nav_3"></i><span>公益排行榜</span></a>
+        <a class="item" href="javascript:;" data-nav="#my"><i class="bottom_nav_4"></i><span>个人中心</span></a>
+    </div>
+    <script type="text/javascript">
+        $(function() {
+            var fontbk = document.documentElement.style.fontSize;
+
+            function toggleNav() {
+                var url = location.hash.indexOf('#') === 0 ? location.hash.substr(1) : '';
+                var navs = $('.blk-nav a').removeClass('current').map(function() {
+                    return $(this).data('nav').substr(1);
+                });
+                navs.push('home');
+                navs.push('cert');
+                navs.push('tuiguang');
+
+                if (navs.indexOf(url) !== -1) {
+                    $('.blk-nav').closest('.bottom_nav').removeClass('hidden');
+                } else {
+                    $('.blk-nav').closest('.bottom_nav').addClass('hidden');
+                }
+
+                $('.blk-nav').find('a[data-nav="#'+url+'"]').addClass('current');
+
+
+                var boxUrls = [
+                    '', 'home', 'rule', 'ranking', 'my', 'search', 'tuiguang', 'cert', 'honor', 'zhuli', 'zhuli_success'
+                ];
+                if (boxUrls.indexOf(url) !== -1) {
+                    document.documentElement.style.fontSize = fontbk;
+                } else {
+                    document.documentElement.style.fontSize = null;
+                }
+            }
+
+            $(window).on('hashchange', function () {
+                toggleNav();
+            });
+
+            toggleNav();
+
+            var hash = location.hash.substr(1);
+            if ('home' == hash) {
+                hash = '';
+            }
+
+            $('.blk-nav a').click(function() {
+                location.hash = $(this).data('nav');
+            });
+            $('.blk-nav').find('a[data-nav="#' + hash + '"]').addClass('current');
+        });
+    </script>
+</div>

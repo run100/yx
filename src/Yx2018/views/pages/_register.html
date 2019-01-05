@@ -1,0 +1,529 @@
+
+
+<template id="tpl_consent" title="毅行公告书">
+    <div class="page">
+        <div class="page__hd">
+            <h1 class="page__title">毅行公告书</h1>
+            <p class="page__desc">请认真阅读以下内容，点击文末同意按钮意味着您已了解本次毅行报名活动的背景目的及规则，并自愿参与到本次公益行动中来。</p>
+        </div>
+        <div class="page__bd">
+            <article class="weui-article">
+                <section>
+                    <section>
+                        <h3 style="font-weight: bold">亲爱的毅行者们：</h3>
+                        <p>
+                            “大湖名城 青春毅行”环巢湖毅行大会，自2014年举办首届至今，已迎来第五个年头。活动开展以来，一直致力于让群众乐于参与、发扬公益精神。目前，毅行已经成为群众喜爱并积极参与最多的体育项目之一，成为合肥市社会生活中的一大亮点。
+                        </p>
+                        <p>
+                            2018年，应政府指导要求以“不忘初心、回归公益，切实贯彻十九大精神，践行精准扶贫”的理念，本届毅行大会由安徽省青少年发展基金会发起，中共合肥市委宣传部、共青团合肥市委员会、合肥市旅游发展委员会、合肥市体育局主办，万家热线、合肥市青少年发展基金会、合肥市团校承办。较往届大会报名方式不同，本届毅行大会采取“名额预约+公益募捐”的形式释放毅行名额：即通过个人或组队预报名、邀请好友助力捐赠1元公益金，最终以募集公益金总额及时间先后顺序进行排名，发放共15000个毅行名额。
+                        </p>
+                    </section>
+                    <section>
+                        <h3 style="font-weight: bold">特别提示：</h3>
+                        <p>
+                            1、无论报名参赛者是否获得毅行名额，其参与报名后所获得的好友助力捐赠所得款项均一律视为其自愿捐赠至“安徽省青少年发展基金会”，且同意并授权组委会代本人将该款项转入安徽省青少年发展基金会账户，用于合肥市青少年发展公益事业，助力脱贫攻坚，用于资助困难学生、关怀公安英烈子女，帮助白血病患儿等。
+                        </p>
+                        <p>
+                            2、您理解并放弃接受捐赠票据，同意授权组委会统一接受安徽省青少年发展基金会开具关于本次活动公益募捐总额的捐赠票据。此次报名募捐过程也将实时公布且公开透明。
+                        </p>
+                        <p>
+                            3、本次活动为纯公益性质，全程遵循本着自愿参与的原则。我们期待着广大与您相同的有志爱心之士，积极参与到此次公益行动中来，用万千爱心灌溉青少年的成长！
+                        </p>
+                        <p>
+                            请您详细阅读以上信息，并清楚了解本次毅行报名活动的背景目的及规则。同意将个人及团队相关信息填报，并自愿参与到本次公益行动中来。
+                        </p>
+                        <p>
+                            以上内容本人已详细阅读，并知晓相应法律后果。以下承诺为本人真实意思表示，并且准确无误。
+                        </p>
+                    </section>
+                </section>
+            </article>
+            <div style="text-align: center; margin-bottom: 10px;">
+                <a class="weui-btn weui-btn_default btn-reject" style="display: inline-block; width: 42%;" href="javascript:home()">不同意</a><a class="weui-btn weui-btn_primary btn-accept" style="display: inline-block; width: 42%; margin-left: 15px;" href="javascript:;">同意</a>
+            </div>
+        </div>
+
+        <script type="text/javascript">
+            $(function(){
+                var Page = current_page();
+
+                //select 默认色
+                Page.find('.btn-accept').click(function() {
+                    location.hash = '#nums';
+                });
+            });
+        </script>
+    </div>
+</template>
+
+
+<template id="tpl_nums" title="选择报名人数">
+    <div class="page">
+        <div class="page__hd">
+            <h1 class="page__title">请选择目标终点和报名人数</h1>
+            <p class="page__desc">如果是多人报名参加，则首条报名信息默认为队长信息</p>
+        </div>
+        <div class="page__bd">
+            <div class="weui-cells weui-cells_form">
+
+                <div class="weui-cell weui-cell_select weui-cell_select-after">
+                    <div class="weui-cell__hd">
+                        <label class="weui-label">目标终点</label>
+                    </div>
+                    <div class="weui-cell__bd">
+                        <select class="weui-select cor_gray" name="line">
+                            <option value="">请选择目标终点</option>
+                            @foreach($fields['line'] as $k => $v)
+                            <option value="{{$k}}">{{$v}} {{$fields['line_length'][$k]}}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                </div>
+
+                <div class="weui-cell weui-cell_select weui-cell_select-after">
+                    <div class="weui-cell__hd">
+                        <label class="weui-label">报名人数</label>
+                    </div>
+                    <div class="weui-cell__bd">
+                        <select class="weui-select cor_gray" name="nums">
+                            <option value="">请选择报名人数</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                        </select>
+                    </div>
+                </div>
+
+            </div>
+            <div class="weui-btn-area">
+                <a class="weui-btn weui-btn_primary btn-submit" href="javascript:">确定</a>
+            </div>
+        </div>
+        <script type="text/javascript">
+            $(function(){
+                var Page = current_page();
+
+                //select 默认色
+                Page.find('select.cor_gray').change(function() {
+                    if ($(this).val() == '') {
+                        $(this).addClass('cor_gray');
+                    } else {
+                        $(this).removeClass('cor_gray');
+                    }
+                });
+
+                Page.find('.btn-submit').click(function() {
+                    //select 默认色
+                    Page.find('select.cor_gray').change(function() {
+                        if ($(this).val() == '') {
+                            $(this).addClass('cor_gray');
+                        } else {
+                            $(this).removeClass('cor_gray');
+                        }
+                    });
+
+                    var line = Page.find('select[name=line]').val();
+                    if (line == '') {
+                        weui_alert('请选择目标终点');
+                        return false;
+                    }
+
+                    var nums = Page.find('select[name=nums]').val();
+                    if (nums == '') {
+                        weui_alert('请选择报名人数');
+                        return false;
+                    }
+
+                    window.location.hash = '#register';
+                });
+            });
+        </script>
+    </div>
+</template>
+
+<template id="tpl_register" title="报名表">
+    <div class="page">
+        <div class="page__bd">
+            <div class="weui-flex hidden">
+                <div class="weui-flex__item" style="height: 160px; background: #00a9ff; text-align: center;">
+                    BANNER
+                </div>
+            </div>
+
+            <form name="players">
+                <div class="weui-cells__title">填写选手信息 (<span class="player-id"></span>/<span class="player-nums"></span>)</div>
+                <div class="weui-cells weui-cells_form">
+                    <div class="weui-cell">
+                        <div class="weui-cell__hd">
+                            <label class="weui-label">姓名</label>
+                        </div>
+                        <div class="weui-cell__bd">
+                            <input name="name" class="weui-input" type="text" placeholder="请输入姓名"/>
+                        </div>
+                        <div class="weui-cell__ft">
+                            <i class="weui-icon-warn"></i>
+                        </div>
+                    </div>
+
+                    <div class="weui-cell weui-cell_select weui-cell_select-after">
+                        <div class="weui-cell__hd">
+                            <label class="weui-label">证件类型</label>
+                        </div>
+                        <div class="weui-cell__bd">
+                            <select class="weui-select" name="passport_type">
+                                @foreach($fields['passport'] as $k => $v)
+                                <option value="{{$k}}">{{$v}}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="weui-cell">
+                        <div class="weui-cell__hd">
+                            <label class="weui-label">证件号码</label>
+                        </div>
+                        <div class="weui-cell__bd">
+                            <input name="passport" class="weui-input" type="text" placeholder="请输入证件号码">
+                        </div>
+                        <div class="weui-cell__ft">
+                            <i class="weui-icon-warn"></i>
+                        </div>
+                    </div>
+
+                    <div class="weui-cell weui-cell_select weui-cell_select-after hidden">
+                        <div class="weui-cell__hd">
+                            <label class="weui-label">性别</label>
+                        </div>
+                        <div class="weui-cell__bd">
+                            <select class="weui-select cor_gray" name="gender">
+                                <option value="">请选择性别</option>
+                                @foreach($fields['gender'] as $k => $v)
+                                <option value="{{$k}}">{{$v}}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="weui-cell hidden">
+                        <div class="weui-cell__hd">
+                            <label class="weui-label">年龄</label>
+                        </div>
+                        <div class="weui-cell__bd">
+                            <input name="age" class="weui-input" type="number" min="1" max="55" step="1" placeholder="请输入年龄"/>
+                        </div>
+                        <div class="weui-cell__ft">
+                            <i class="weui-icon-warn"></i>
+                        </div>
+                    </div>
+
+                    <div class="weui-cell">
+                        <div class="weui-cell__hd">
+                            <label class="weui-label">手机号</label>
+                        </div>
+                        <div class="weui-cell__bd">
+                            <input name="phone" class="weui-input" type="tel" placeholder="请输入手机号"/>
+                        </div>
+                        <div class="weui-cell__ft">
+                            <i class="weui-icon-warn"></i>
+                        </div>
+                    </div>
+                </div>
+            </form>
+
+            <div class="weui-btn-area">
+                <a class="weui-btn weui-btn_primary btn-submit" href="javascript:"><i class="weui-loading hidden"></i><span class="btn-text">确定</span></a>
+            </div>
+        </div>
+        <script type="text/javascript">
+            $(function() {
+                var Page = current_page();
+
+                //select 默认色
+                Page.find('select.cor_gray').change(function() {
+                    if ($(this).val() == '') {
+                        $(this).addClass('cor_gray');
+                    } else {
+                        $(this).removeClass('cor_gray');
+                    }
+                });
+
+                //身份证不需要填性别和年龄
+                Page.find('select[name=passport_type]').change(function() {
+                    if ($(this).val() == 'SFZ') {
+                        Page.find('input[name=age],select[name=gender]').closest('.weui-cell').addClass('hidden');
+                    } else {
+                        Page.find('input[name=age],select[name=gender]').closest('.weui-cell').removeClass('hidden');
+                    }
+                });
+
+                Page.find('select,input').change(function() {
+                    $(this).closest('.weui-cell').removeClass('weui-cell_warn');
+                });
+                Page.find('select,input').blur(function() {
+                    $(this).closest('.weui-cell').removeClass('weui-cell_warn');
+                });
+                Page.find('select,input').keyup(function() {
+                    $(this).closest('.weui-cell').removeClass('weui-cell_warn');
+                });
+
+                var nums = parseInt($('.container .page.nums select[name=nums]').val());
+                if (isNaN(nums) || nums > 3 || nums < 1) {
+                    var $tooltips = $('.js_tooltips');
+                    $tooltips.css('display', 'block');
+                    $tooltips.text('页面参数错误');
+                    setTimeout(function () {
+                        $tooltips.css('display', 'none');
+                    }, 2000);
+                    return;
+                }
+
+                //字段 <=> 控件 对应关系
+                var input_mapping = {
+                    name: Page.find('input[name=name]'),
+                    passport_type: Page.find('select[name=passport_type]'),
+                    passport: Page.find('input[name=passport]'),
+                    gender: Page.find('select[name=gender]'),
+                    age: Page.find('input[name=age]'),
+                    phone: Page.find('input[name=phone]')
+                };
+
+                //已验证的信息
+                var validatedDatas = [];
+                var validatedPhones = [];
+                var validatedPassports = [];
+                var currentId = 0;
+
+                function resetPage(id) {
+                    currentId = id;
+                    resetWarning();
+                    Page.find('form[name=players]')[0].reset();
+                    Page.find('select').trigger('change');
+                    Page.find('.player-id').text(id + 1);
+                    Page.find('.player-nums').text(nums);
+                    if (id + 1 >= nums) {
+                        Page.find('.btn-submit .btn-text').text('完成填写');
+                    } else {
+                        Page.find('.btn-submit .btn-text').text('下一位');
+                    }
+                }
+
+                function resetWarning() {
+                    Page.find('.weui-cell_warn').removeClass('weui-cell_warn');
+                }
+
+                function addWarning(field) {
+                    input_mapping[field].closest('.weui-cell').addClass('weui-cell_warn');
+                }
+
+                function fetchPlayer() {
+                    var player = {};
+                    for (var k in input_mapping) {
+                        player[k] = input_mapping[k].val().replace(/(^\s+)|(\s+$)/g, '');
+                    }
+                    player.line = $('.container .page.nums select[name=line]').val();
+                    return player;
+                }
+
+                function checkPlayer(player) {
+                    resetWarning();
+
+                    if (player.line == '') {
+                        weui_alert('未选择目标终点');
+                        return false;
+                    }
+
+                    if (player.name == '') {
+                        weui_alert('请填写选手姓名');
+                        addWarning('name');
+                        return false;
+                    }
+
+                    if (player.passport == '') {
+                        weui_alert('请填写证件号码');
+                        addWarning('passport');
+                        return false;
+                    }
+
+                    if (player.passport_type != 'SFZ') {
+                        if (player.gender == '') {
+                            weui_alert('请选择性别');
+                            addWarning('gender');
+                            return false;
+                        }
+                        if (player.age == '') {
+                            weui_alert('请填写年龄');
+                            addWarning('age');
+                            return false;
+                        }
+                    }
+
+                    if (player.phone == '') {
+                        weui_alert('请填写手机号码');
+                        addWarning('phone');
+                        return false;
+                    }
+
+                    return true;
+                }
+
+                function checkPlayerRemote(player, callback, loading) {
+                    return $.post('check_player_info', player, function(ret) {
+                        if (ret.code !== 0) {
+                            weui_alert(ret.msg);
+                            loading.addClass('hidden');
+                            return;
+                        }
+
+                        callback(ret.data);
+                    }, 'json').fail(function(ret) {
+                        loading.addClass('hidden');
+                        showError(ret);
+                    });
+                }
+
+                function savePlayers(players, callback, loading) {
+                    return $.post('save_players', {players: players}, function(ret) {
+                        if (ret.code !== 0) {
+                            weui_alert(ret.msg);
+                            loading.addClass('hidden');
+                            return;
+                        }
+
+                        callback(ret.data);
+                    }, 'json');
+                }
+
+
+                function showError(ret) {
+                    if (!ret) {
+                        return false;
+                    }
+
+                    if (ret.status !== 422) {
+                        return false;
+                    }
+
+                    ret = $.parseJSON(ret.responseText);
+
+                    if (!ret.errors) {
+                        return false;
+                    }
+
+                    for (var i in ret.errors) {
+                        for (var j in ret.errors[i]) {
+                            weui_alert(ret.errors[i][j]);
+                            addWarning(i);
+                            return true;
+                        }
+                        break;
+                    }
+                }
+
+
+                Page.find('.btn-submit').click(function() {
+                    Page.find('input').blur();
+
+                    var loading = $(this).find('.weui-loading');
+
+                    if ($(this).find('.weui-loading:visible').size()) {
+                        return false;
+                    }
+
+                    var player = fetchPlayer();
+                    if (!checkPlayer(player)) {
+                        return false;
+                    }
+
+                    loading.removeClass('hidden');
+
+                    checkPlayerRemote(player, function(validatedData) {
+
+                        var passports = validatedPassports;
+                        var passport = player.passport_type + ':' + player.passport;
+                        passports[currentId] = '';
+                        if (passports.indexOf(passport) >= 0) {
+                            weui_alert('同组队员证件号码不能相同');
+                            addWarning('passport');
+                            loading.addClass('hidden');
+                            return false;
+                        }
+
+                        var phones = validatedPhones;
+                        phones[currentId] = '';
+                        if (phones.indexOf(player.phone) >= 0) {
+                            weui_alert('同组队员手机号码不能相同');
+                            addWarning('phone');
+                            loading.addClass('hidden');
+                            return false;
+                        }
+
+                        passports[currentId] = passport;
+                        phones[currentId] = player.phone;
+
+                        validatedDatas[currentId] = validatedData;
+
+                        if (validatedDatas.length >= nums) {
+                            savePlayers(validatedDatas, function(ret) {
+                                loading.addClass('hidden');
+                                window.location.hash = '#reg_success';
+                                setTimeout(function() {
+                                    RegSuccessController.init(ret.threadid);
+                                }, 200)
+                            }, loading);
+                        } else {
+                            loading.addClass('hidden');
+                            resetPage(validatedDatas.length);
+                        }
+                    }, loading);
+                });
+
+                resetPage(0);
+            });
+        </script>
+    </div>
+</template>
+
+
+<template id="tpl_reg_success" title="预约成功">
+    <div class="page">
+        <div class="weui-msg">
+            <div class="weui-msg__icon-area"><i class="weui-icon-success weui-icon_msg"></i></div>
+            <div class="weui-msg__text-area">
+                <h2 class="weui-msg__title">您已完成毅行名额预约！</h2>
+                <p class="weui-msg__desc">快前往<i style="color: #00a9ff">个人中心</i>领取您的专属<i style="color: #00a9ff">公益募捐海报</i><br/>分享给好友们募捐助力吧!<br/>预约结果将在4月20日10:00公布，敬请关注。</p>
+            </div>
+            <div class="weui-msg__opr-area">
+                <p class="weui-btn-area">
+                    <a href="javascript:;" class="weui-btn weui-btn_primary btn-my">个人中心</a>
+                </p>
+            </div>
+        </div>
+
+        <script type="text/javascript">
+            $(function() {
+                var Page = current_page();
+                var threadid;
+
+                Page.find('.btn-my').click(function() {
+                    window.location.hash = '#my';
+
+                    //报名成功后如果是从首页进入的(100%, 但不排除改hash跳转)则刷新首页
+                    if (window.HomeController) {
+                        window.HomeController.reloadPage();
+                    }
+
+                    setTimeout(function() {
+                        UserController.showGongyiAlert(threadid);
+                    }, window.waitTime);
+                });
+
+
+                window.RegSuccessController = {
+                    init: function(id) {
+                        threadid = id;
+                    }
+                };
+            });
+        </script>
+    </div>
+</template>

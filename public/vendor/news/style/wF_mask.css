@@ -1,0 +1,28 @@
+@charset "utf-8";
+/*--- layout ---*/
+.wF_mask{ position: relative; width: 100%; height: 600px; background: #fff; z-index: 1; }
+.wF_mask .wF_mask_pic{ position: relative; width: 100%; height: 100%; overflow: hidden; z-index: 2; }
+.wF_mask_pic_ul li{ display: inline; width: 1000px; height: 600px; float: left; text-align: center; }
+.wF_mask_pic_ul li img { width: 100%; height: 100%; }
+.wF_mask .wF_mask_pic .active{ z-index: 2; }
+.wF_mask_txt{ position: absolute; left: 0; bottom: 0; width: 100%; height: 60px; line-height: 60px; overflow: hidden; z-index: 3; text-align: left; }
+.wF_mask_txt li{ display: none; }
+.wF_mask_txt li.active{ display: block; ,margin: 0 auto; }
+.wF_mask_txt h3{ padding: 0 15px; font-size: 18px; font-weight: normal; font-family: Microsoft YaHei,SimHei; color: #fff; }
+.wF_mask_txt_c { position: relative; z-index: 2; }
+.wF_mask_txt_bg { position: absolute; top: 0; left: 0; display: block; width: 100%; height: 100%; background: #000; z-index: 1; opacity: .5; filter: alpha(opacity=50); }
+.wF_mask_txt .ell{ width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; color: #666; line-height: 22px; }
+.wF_mask_txt .ico_tag{ display: inline-block; padding: 0 5px; height: 24px; margin-right: 10px; line-height: 24px; background: #BF4A08; color: #fff; font-size: 14px; font-family: \5b8b\4f53; vertical-align: middle; }
+.wF_mask .prev,.wF_mask .next{ display: inline-block; background: rgba(0,0,0,0.7); position: absolute; top: 0; z-index: 5; width: 32px; height: 100%; cursor: pointer; }
+.wF_mask .prev{ left: 0; }
+.wF_mask .next{ right: 0; }
+.wF_mask .prev i,.wF_mask .next i { display: inline-block; width: 21px; height: 40px; background: url(../images/slider-arrows.png) no-repeat; background-position: 0 0; position: absolute; top: 50%; margin-top: -20px; right: 10px; z-index: 9; }
+.wF_mask .next i { left: 10px; background-position: -32px 0; }
+.wF_mask .wF_mask_num{ position: relative; z-index: 11; text-align: right; margin-top: -40px; _position: absolute; _width: 100%; color: #fff; font-size: 18px; }
+.wF_mask .wF_mask_num .text_curr { font-size: 28px; }
+.wF_mask .wF_mask_num .text_total { margin-right: 35px; }
+.wF_mask .wF_mask_num ul { display: inline-block; *display: inline; *zoom: 1; margin-right: 10px; }
+.wF_mask .wF_mask_num li{ display: inline; float: left; margin-left: 5px; overflow: hidden; cursor: pointer; font-size: 1.5em; }
+.wF_mask .wF_mask_num_pro{ color: #e8e8e8; }
+.wF_mask .active .wF_mask_num_pro { color: #00a8df; }
+.wF_mask_pic ul{ position: relative; }

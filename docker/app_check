@@ -1,0 +1,62 @@
+#!/bin/bash
+
+declare -A roles
+for constant in $APP_ROLE
+do
+    roles[$constant]=1
+done
+
+if [[ ! -f /root/.app_laravel_inited ]]; then
+  exit
+fi
+
+cd /var/www
+
+git fetch
+NEED_RELEASE=$(git diff $APP_GIT_BRANCH..origin/$APP_GIT_BRANCH -- RELEASE_CODE|wc -l)
+NEED_CC=$(git diff $APP_GIT_BRANCH..origin/$APP_GIT_BRANCH -- RELEASE_CODE|grep +CACHE_VERSION:|wc -l)
+NEED_CONSUMER_RESTART=$(git diff $APP_GIT_BRANCH..origin/$APP_GIT_BRANCH -- RELEASE_CODE|grep +CONSUMER_VERSION:|wc -l)
+NEED_RELOAD_NGINX=$(git diff $APP_GIT_BRANCH..origin/$APP_GIT_BRANCH -- nginx.conf nginx.params.prod lua/ lualib/|wc -l)
+NEED_RELOAD_PHP=$(git diff $APP_GIT_BRANCH..origin/$APP_GIT_BRANCH -- php.ini.prod www.conf www.params.prod |wc -l)
+
+if [[ $NEED_RELEASE -lt 1 ]]; then
+  echo 'No need release.';
+  exit
+fi
+
+git pull
+cp .env.prod .env
+cp php.ini.prod php.ini
+cp nginx.params.prod nginx.params
+cp www.params.prod www.params
+
+
+git submodule init
+git submodule update
+
+if [[ $NEED_CC -gt 0 ]]; then
+  ./artisan config:cache
+  ./artisan route:cache
+fi
+
+if [[ $NEED_CONSUMER_RESTART -gt 0 ]]; then
+    if [[ "${roles['q_default']}" ]]; then
+        #queue:restart的原理是在Redis里做个重启时间的标记; 只需要在一台容器里执行一次，其他机器就会跟着重启
+        ./artisan queue:restart
+    fi
+fi
+
+if [[ ! "${roles['noweb']}" ]]; then
+    if [[ $NEED_RELOAD_NGINX -gt 0 ]]; then
+        nginx -s reload
+    fi
+fi
+
+if [[ ! "${roles['nofpm']}" ]]; then
+    if [[ $NEED_RELOAD_PHP -gt 0 ]]; then
+        kill -USR2 $(ps aux|grep php-fpm|grep master|awk '{print $2}')
+    fi
+
+    curl "http://127.0.0.1/clear-apc.php" -H 'Host:zt.365jia.cn' -H 'AppKey:543c0bcfdd7d54e200e5499ddddad2dd'
+fi
+

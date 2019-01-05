@@ -1,0 +1,54 @@
+#!/bin/bash
+
+declare -A roles
+for constant in $APP_ROLE
+do
+    roles[$constant]=1
+done
+
+chmod 755 /usr/local/bin
+chmod 755 /usr/local
+
+rm -rf /var/spool/cron/crontabs/*
+CRONTAB=/var/spool/cron/crontabs/root
+
+echo "APP_GIT_URL=$APP_GIT_URL" > $CRONTAB
+echo "APP_GIT_BRANCH=$APP_GIT_BRANCH" >> $CRONTAB
+if [[ "$APP_ROLE" != "" ]]; then
+    echo "APP_ROLE=$APP_ROLE" >> $CRONTAB
+fi
+cat docker/crontab >> $CRONTAB
+echo >> $CRONTAB
+chown -R root:crontab $CRONTAB
+chmod 600 $CRONTAB
+
+if [[ -f /root/.app_laravel_inited ]]; then
+    cp .env.prod .env
+    cp php.ini.prod php.ini
+    cp nginx.params.prod nginx.params
+    cp www.params.prod www.params
+fi
+
+if [[ ! -d /var/run/cron ]]; then
+    mkdir /var/run/cron
+    chmod 777 /var/run/cron
+fi
+
+for constant in $APP_ROLE
+do
+    for file in $(find docker/crontabs -type f -name $constant:*); do
+        IFS=':' read -r -a PARTS <<< $(basename $file)
+        CRONTAB=/var/spool/cron/crontabs/${PARTS[1]}
+
+        if [[ ! -f $CRONTAB ]]; then
+            echo "APP_GIT_URL=$APP_GIT_URL" > $CRONTAB
+            echo "APP_GIT_BRANCH=$APP_GIT_BRANCH" >> $CRONTAB
+            echo "APP_ROLE=$APP_ROLE" >> $CRONTAB
+        fi
+        cat $file >> $CRONTAB
+        echo >> $CRONTAB
+
+        chown -R ${PARTS[1]}:crontab $CRONTAB
+        chmod 600 $CRONTAB
+    done
+done

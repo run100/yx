@@ -1,0 +1,212 @@
+
+/*新闻轮播1*/
+.featured_progress{
+  position:relative;
+  /*width:100%;*/
+  height:393px;
+  z-index:1;
+}
+.featured_progress .wjy_pic{
+  position:relative;
+  width:100%;
+  height:100%;
+  overflow:hidden;
+  z-index:2;
+}
+
+.featured_progress .wjy_pic img {
+  width: 280px;
+  height: 168px;
+  /*padding: 0 5px;*/
+  /*background-color: #fff;*/
+  opacity: .6;
+  filter:Alpha(opacity=60);
+}
+
+.featured_progress .wjy_pic_ul li{
+  display:inline;
+  width:290px;
+  height:100%;
+  float:left;
+  text-align: center;
+  margin-top: 127px;
+}
+
+.featured_progress .wjy_pic_ul li.active {
+  width: 650px;
+  height: 393px;
+  margin-top: 0;
+  padding: 0;
+}
+
+.featured_progress .wjy_pic_ul li.active img {
+  background-color: transparent;
+  opacity: 1;
+  filter:Alpha(opacity=100);
+  animation:mymove_scale .5s ease both;
+  -webkit-animation:mymove_scale .5s linear both;
+  -moz-animation:mymove_scale .5s linear both;
+  -ms-animation:mymove_scale .5s linear both;
+  -o--animation:mymove_scale .5s linear both;
+  transform-origin: 50% 50%;
+  -webkit-transform-origin: 50% 50%;
+  -moz-webkit-transform-origin: 50% 50%;
+  -o-webkit-transform-origin: 50% 50%;
+  -ms-webkit-transform-origin: 50% 50%;
+}
+
+@keyframes mymove_scale {
+  0% { width: 280px;height: 168px; }
+  100% { width: 650px;height: 393px;transform-origin: 50% 50%; -webkit-transform-origin: 50% 50%; }
+}
+
+@-webkit-keyframes mymove_scale {
+  0% { width: 280px;height: 168px; }
+  100% { width: 650px;height: 393px;transform-origin: 50% 50%; -webkit-transform-origin: 50% 50%; }
+}
+
+@-moz-keyframes mymove_scale {
+  0% { width: 280px;height: 168px; }
+  100% { width: 650px;height: 393px;transform-origin: 50% 50%; -moz-transform-origin: 50% 50%; }
+}
+
+@-o-keyframes mymove_scale {
+  0% { width: 280px;height: 168px; }
+  100% { width: 650px;height: 393px;transform-origin: 50% 50%; -moz-transform-origin: 50% 50%; }
+}
+
+@-ms-keyframes mymove_scale {
+  0% { width: 280px;height: 168px; }
+  100% { width: 650px;height: 393px;transform-origin: 50% 50%; -ms-transform-origin: 50% 50%; }
+ }
+
+
+
+.featured_progress .wjy_pic_ul li.active { margin: 0 5px; }
+
+.featured_progress .wjy_pic .active{z-index:2;}
+.featured_progress .wjy_txt{
+  position:absolute;
+  left:50%;
+  bottom:0;
+  width:650px;
+  height:40px;
+  line-height:40px;
+  text-align: left;
+  margin-left: -325px;
+  overflow:hidden;
+  z-index:3;
+}
+.featured_progress .wjy_txt li{display:none;}
+.featured_progress .wjy_txt li.active{
+  display:block;
+  margin: 0 auto;
+}
+.featured_progress .wjy_txt h3{
+  padding:0 25px;
+  font-size:16px;
+  font-weight:normal;
+  font-family:Microsoft YaHei,SimHei;
+  color: #fff;
+}
+.featured_progress .wjy_txt_c {
+  position: relative;
+  z-index: 2;
+}
+.featured_progress .wjy_txt_bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  background: #000;
+  z-index: 1;
+  opacity: .5;
+  filter: alpha(opacity=50);
+
+}
+.featured_progress .wjy_txt .ell{
+  width:100%;
+  overflow:hidden;
+  text-overflow:ellipsis;
+  white-space:nowrap;
+  color:#666;
+  line-height:22px;
+}
+.featured_progress .wjy_txt .ico_tag{
+  display:inline-block;
+  padding:0 5px;
+  height:24px;
+  margin-right:10px;
+  line-height:24px;
+  background:#BF4A08;
+  color:#fff;
+  font-size:14px;
+  font-family:\5b8b\4f53;
+  vertical-align:middle;
+}
+
+.featured_progress .wjy_num{
+  position:relative;
+  z-index:11;
+  text-align:right;
+  margin-top: -30px;
+  _position: absolute;
+  _width:100%;
+  padding-right: 20px;
+}
+.featured_progress .wjy_num ul {
+  display: inline-block;
+  *display: inline;*
+zoom: 1;
+}
+.featured_progress .wjy_num li {
+  display:inline;
+  float:left;
+  margin-left:5px;
+  overflow:hidden;
+  cursor:pointer;
+  font-size:1.5em;
+}
+.featured_progress .wjy_num_pro{
+  background-color: #F7C9B2;
+  width: 11px;
+  height: 11px;
+  display: none;
+}
+.featured_progress .active .wjy_num_pro {background-color: #E70012;}
+.featured_progress .wjy_pic ul{position:relative;}
+
+
+/*左右按钮*/
+.featured_progress .prev,.featured_progress .next{
+  display:inline-block;
+  position:absolute;
+  top:50%;
+  left: 50%;
+  width:32px;
+  height:60px;
+  cursor:pointer;
+  margin-top: -30px;
+  z-index:5;
+}
+.featured_progress .prev{
+  margin-left: -340px;
+  background: url(../images/ico_scroll_left_02.png) no-repeat;
+  opacity: .5;
+  filter:Alpha(opacity=50);
+
+}
+.featured_progress .next{
+  margin-left: 308px;
+  background: url(../images/ico_scroll_right_02.png) no-repeat;
+  opacity: .5;
+  filter:Alpha(opacity=50);
+}
+
+.featured_progress .prev:hover,.featured_progress .next:hover {
+  opacity: 1;
+  filter:Alpha(opacity=100);
+}
+

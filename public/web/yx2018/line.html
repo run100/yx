@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta name="wanjia-perms" content="cache:E600" />
+    <title>line</title>
+    <link rel="stylesheet" href="http://365jia.cn/css/basic.css" type="text/css" />
+    <link rel="stylesheet" href="line/style/jquery.mCustomScrollbar.css" type="text/css">
+    <link rel="stylesheet" href="line/style/css.css" />
+</head>
+<body>
+<style type="text/css" rel="stylesheet">
+    body { background: transparent; font-family: "微软雅黑"; }
+</style>
+<div class="mt10 fz24 cor_6 tac"><span><img src="line/images/ico_love_welfare.png" class="vb"></span><span class="ml10">青春毅行公益募捐总额已达</span></div>
+<p class="mt5 fz52 cor_9 tac"><span id="txt-total-donate">...</span><em class="fz36 ml25">元</em></p>
+<!--公益排行-->
+<!--tab-->
+<div class="title_project_box cf">
+    <a href="javascript:void(0);" class="box_item box_a_right current fl" rel="L3">全程线 TOP100</a>
+    <a href="javascript:void(0);" class="box_item fl" rel="L2">半程线 TOP100</a>
+    <a href="javascript:void(0);" class="box_item box_a_left fl" rel="L1">MINI TOP100</a>
+</div>
+<!--tab对应的内容-->
+<div class="mt15" >
+    <div class="public_welfare_area" style="height:600px;">
+        <table class="rank_table_welfare ">
+            <colgroup>
+                <col style="width: 15%;" />
+                <col style="width: 15%" />
+                <col style="width: 70%;" />
+            </colgroup>
+            <tbody id="rank_list">
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+<template id="cell_rank">
+    <tr>
+        <td><span class="txt-rank" ></span></td>
+        <td><img class="avatar" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" /></td>
+        <td>
+            <div class="cf">
+                <div class="fl"><em class="fz18 txt-name">微信名称</em></div>
+                <div class="ov"><p class="tar pr45"><em class="mr5 fz22 cor_9 txt-donate">0</em>元</p></div>
+            </div>
+            <p class="mt10 fz16 cor_1 tal ">名额预约时间:<em class="txt-time"></em></p>
+        </td>
+    </tr>
+</template>
+
+<script type="text/javascript" src="http://365jia.cn/js/jQuery/jquery-1.8.2.min.js"></script>
+<script type="text/javascript" src="line/js/C3Counter.js"></script>
+<script type="text/javascript" src="line/js/wF_strange.1.4.js"></script>
+<script type="text/javascript" src="line/js/jquery-ui-1.10.4.min.js"></script>
+<script type="text/javascript" src="line/js/jquery.mousewheel.min.js"></script>
+<script type="text/javascript" src="line/js/jquery.mCustomScrollbar.js"></script>
+<script type="text/javascript" src="http://365jia.cn/js/myfocus/pic_scroll.js"></script>
+<script type="text/javascript">
+    $(function() {
+
+        $.get('ranking_head_pc', function(ret) {
+            $('#txt-total-donate').html(ret.data.donate);
+        });
+        loadRanking('L3');
+
+        (function() {
+            $(".title_project_box .box_item").click(function() {
+                var _this = $(this);
+                var index = _this.index();
+                var rel = _this.attr('rel');
+                loadRanking(rel);
+                _this.addClass("current").siblings(".box_item").removeClass("current");
+                $(".rank_table_welfare").eq(index).removeClass("dn").siblings(".rank_table_welfare").addClass("dn");
+            })
+        } ());
+
+        /*滚动条*/
+        (function() {
+            $(".public_welfare_area").mCustomScrollbar({
+                set_width:570, /*设置你内容的宽度 值可以是像素或者百分比*/
+                set_height:480, /*设置你内容的高度 值可以是像素或者百分比*/
+                autoDraggerLength:true, /*根据内容区域自动调整滚动条拖块的长度 值:true,false 默认为false*/
+                scrollInertia:550, /*滚动的惯性值 在毫秒中 使用0可以无滚动惯性 (滚动惯性可以使区块滚动更加平滑)*/
+                scrollEasing:"easeOutCirc", /*滚动动作类型 查看 jquery UI easing 可以看到所有的类型*/
+                mouseWheel:true, /*鼠标滚动的支持 值为:true.false,像素 默认的情况下 鼠标滚动设置成像素值 填写false取消鼠标滚动功能*/
+                /*mouseWheel:"auto",*/
+                mouseWheelPixels:80, /*鼠标滚动中滚动的像素数目 值为以像素为单位的数值*/
+                scrollButtons:{
+                    enable:false, /*是否添加 滚动条两端按钮支持 值:true,false 默认为false*/
+                    scrollType:"pixels", /*滚动按钮滚动类型 1:continuous(断断续续滚动) 2:pixels(根据每次点击的像素数来滚动)*/
+                    scrollSpeed:10, /*设置点击滚动按钮时候的滚动速度(默认 20) 设置一个更高的数值可以更快的滚动*/
+                    scrollAmount:80 /*设置点击滚动按钮时候每次滚动的数值 像素单位 默认 40像素*/
+                },
+                horizontalScroll:false /*是否创建一个水平滚动条 默认是垂直滚动条 值可为:true(创建水平滚动条) 或 false*/
+            })
+        } ());
+
+    });
+
+    function loadRanking(line)
+    {
+        var before_tip = '数据加载中...';
+
+        $.ajax({
+            method: 'GET',
+            url: 'ranking',
+            dataType: 'json',
+            data: {line: line},
+            beforeSend: function(){
+                $('#rank_list').html(before_tip);
+            },
+            success: function(ret){
+                $('#rank_list').html('')
+                if (ret.code) {
+                    console.log('数据异常!');
+                    return;
+                }
+
+                var ranking = ret.data.ranking;
+                // var rank_top = template('rank_list_template', ranking);
+                // $('#rank_list').html(rank_top);
+
+                var tmp = $('#cell_rank').get(0);
+                var cellRender = function(i) {
+                    var dom = document.importNode(tmp.content.children[0], true);
+                    var $dom = $(dom);
+                    $dom.find('.txt-name').text(this.info.nickname);
+                    $dom.find('.txt-time').text(this.time);
+                    if (this.rank == 1) {
+                        $dom.find('.txt-rank').text('').addClass('ico_prize_00');
+                    } else if (this.rank == 2) {
+                        $dom.find('.txt-rank').text('').addClass('ico_prize_01');
+                    } else if (this.rank == 3) {
+                        $dom.find('.txt-rank').text('').addClass('ico_prize_02');
+                    } else {
+                        $dom.find('.txt-rank').text(this.rank)
+                    }
+                    $dom.find('.txt-donate').text(this.donate);
+                    $dom.find('.avatar').attr('src', this.info.headimgurl);
+                    $dom.data('threadid', this.threadid);
+
+                    // $('#rank_list').append($dom);
+                    currentList.append($dom);
+                };
+                var currentList = $('#rank_list');
+                currentList.empty();
+                $.each(ranking, cellRender);
+                return;
+            }
+        });
+    }
+</script>
+</body>
+</html>

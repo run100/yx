@@ -1,0 +1,12 @@
+#修改此文件并Push后，应用服务器会自动更新最新代码；请确保更新前已完成线上Schema更新
+#  APP_VERSION    仅更新线上代码
+#  CACHE_VERSION  更新并清缓存
+
+APP_VERSION: 3
+CACHE_VERSION: 3
+CONSUMER_VERSION: 2
+
+
+
+
+

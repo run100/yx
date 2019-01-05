@@ -1,0 +1,982 @@
+body,div,span,dl,dd,h1,h2,h3,h4,h5,h6,p,form,pre,input,button,textarea,select,ol,li,ul,td,th,img,em,i,b,table,td,th,section,article,aside,header,footer,nav,dialog,figure,a
+{
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -ms-box-sizing: border-box;
+  -o-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+/* 伸缩盒子 */
+.flex_box {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -o-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  width: 100%;
+}
+.flex_box .item {
+  display: block;
+  -moz-box-flex: 1;
+  -o-box-flex: 1;
+  -webkit-box-flex: 1;
+  -ms-flex: 1;
+  -webkit-flex: 1;
+  -flex-flex: 1;
+  flex: 1;
+}
+
+.box_pack {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-box-pack: center;
+  -webkit-box-align: center;
+
+  display: -moz-box;
+  -moz-box-orient: vertical;
+  -moz-box-pack: center;
+  -moz-box-align: center;
+
+  display: -o-box;
+  -o-box-orient: vertical;
+  -o-box-pack: center;
+  -o-box-align: center;
+
+  display: -ms-box;
+  -ms-box-orient: vertical;
+  -ms-box-pack: center;
+  -ms-box-align: center;
+
+  display: box;
+  box-orient: vertical;
+  box-pack: center;
+  box-align: center;
+}
+
+.ell {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.box { font-size: 12px;color: #333; }
+
+.wp100 { width: 100%; }
+
+.hp100 { height: 100%; }
+
+.lh-1 { line-height: 1; }
+
+.mt45 { margin-top: 45px; }
+
+.par1 { padding-left: 45px; padding-right: 45px; }
+
+.cor_f { color: #fff; }
+.cor_4 { color: #FF4F1E; }
+.cor_5 { color: #FFEBA8; }
+.cor_6 { color: #793C31; }
+
+.bgf { background-color: #fff; }
+.bg1 { background-color: #FFCA00; }
+.bg2 { background-color: #F5F4F2; }
+
+.img3 { width: 65px; height: 65px; border-radius: 100%; }
+.img4 { width: 164px; height: 164px; }
+
+/*大转盘-样式*/
+.lottery_box {
+  width:90%;
+  margin:0 auto;
+  overflow:hidden;
+  position:relative;
+}
+
+.pan {
+  position:absolute;
+  width:100%;
+  left:0;
+  top:0;
+}
+
+.lottery_box .round {
+  position: absolute;
+  top: 0;
+  left: 0;
+  border-radius: 100%;
+  text-align: center;
+}
+
+.lottery_box  .rotate {
+  position: absolute;
+  z-index: 2;
+  top: 0;
+  left: 0;
+  display: inline-block;
+  -webkit-transform-origin: 0 0 0;
+  -moz-transform-origin: 0 0 0;
+  transform-origin: 0 0 0;
+  color: #fff;
+}
+
+.lottery_box .rotate:nth-child(odd) {
+  color: #793C31;
+}
+
+.lottery_box .pan .round .img1  {
+  width: 28px;
+  margin-top: 5px;
+}
+
+.lottery_box .pan .round .img2 {
+  width: 26px;
+  margin-top: 5px;
+}
+
+.img_pan,.img_pointer{
+  width:100%;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+}
+
+.pointer_box {
+  position:absolute;
+  width:22%;
+  height:25%;
+  left:50%;
+  top:50%;
+  margin-top:-12.5%;
+  margin-left:-11%;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+}
+
+.lottery_num {
+  font-size:14px;
+  color:#7B2C29;
+  text-align:center;
+  padding-top:16px;
+  padding-bottom:14px;
+  line-height: 16px;
+}
+
+.title_fz_sty {
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding: 0 15px;
+  height: 25px;
+  line-height: 25px;
+  font-size: 14px;
+  color: #fff;
+  background-color: #FF4F1E;
+  border-radius: 0 12px 12px 0;
+}
+
+/*大转盘-中奖样式*/
+.edit_msg_area {
+  padding-bottom: 15px;
+  background-color: #FFFBE9;
+  border-radius: 5px;
+}
+
+.rank_table,.rank_table_01,.rank_table_02 {
+  width: 100%;
+  border: 0;
+  table-layout: fixed;
+}
+
+.rank_table td,.rank_table_01 td {
+  padding: 0 5px;
+  text-align: center;
+  font-size: 14px;
+  height: 40px;
+  line-height: 40px;
+  color: #9E7630;
+  text-overflow:ellipsis;
+  white-space:nowrap;
+  overflow:hidden;
+  width: 50%;
+}
+
+.rank_table thead tr th {
+  font-size: 14px;
+  height: 35px;
+  line-height: 35px;
+  text-align: center;
+  color: #7B2C29;
+  background-color: #FFEDA4;
+}
+.rank_table thead tr th:nth-child(1) { border-radius: 5px 0 0 0; }
+.rank_table thead tr th:nth-child(3) { border-radius: 0 5px 0 0; }
+
+.rank_table tr td:nth-child(2) div {
+  width: 80px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  text-align: center;
+}
+
+.rank_table tr:nth-child(even) {
+  background-color: #FCF6DD;
+}
+
+.rank_table_01 td {
+  padding: 0 5px;
+  color: #555;
+}
+
+.rank_table_01 tr td:nth-child(2) div {
+  width: 110px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  text-align: left;
+  color: #FF4F1E;
+}
+
+.rank_table_01 tr:nth-child(even) {
+  background-color: #FCF5DD;
+}
+
+.rank_table_02 td {
+  padding: 0 10px;
+  text-align: left;
+  font-size: 14px;
+  height: 40px;
+  line-height: 40px;
+  color: #9E7630;
+}
+
+.rank_table_02 tr:nth-child(even) { background: #FCF6DD; }
+
+.page_box { text-align: center;margin-left: -2px; }
+
+.page_box .page_item {
+  display: inline-block;
+  padding: 0 10px;
+  height: 30px;
+  line-height: 30px;
+  background: #FFFBE9;
+  color: #9E7630;
+  font-size: 14px;
+  margin-left: 2px;
+  border: 1px solid #EBCD5D;
+  border-radius: 5px;
+}
+
+.ico_logo_sty {
+  display: inline-block;
+  width: 82px;
+  height: 24px;
+  background: url(../images/ico_logo.png) no-repeat;
+  background-size: 82px;
+  vertical-align: middle;
+}
+
+.btn_1,.btn_2,.btn_4 {
+  display: inline-block;
+  padding: 0 32px;
+  height: 25px;
+  line-height: 25px;
+  font-size: 14px;
+  color: #7B2C29;
+  background-color: #FEEB37;
+  border-radius: 12px;
+  box-shadow: 0 3px 0 #F0B309;
+}
+
+.btn_2 {
+  color: #fff;
+  background-color: #FF4F1E;
+  border-radius: 25px;
+  box-shadow: 0 0 0 transparent;
+}
+
+.btn_3 {
+  display: inline-block;
+  width: 100%;
+  height: 40px;
+  line-height: 40px;
+  text-align: center;
+  font-size: 16px;
+  color: #fff;
+  background-color: #FF4F1E;
+  border-radius: 20px;
+}
+
+.btn_4 {
+  padding: 0 36px;
+  height: 35px;
+  line-height: 35px;
+  font-size: 18px;
+}
+
+.ico_smiling_face {
+  display: inline-block;
+  width: 46px;
+  height: 39px;
+  background: url(../images/ico_smiling_face_01.png) no-repeat;
+  background-size: 46px;
+  vertical-align: middle;
+}
+
+.ico_sad_face,.ico_sad_face_01 {
+  display: inline-block;
+  width: 63px;
+  height: 66px;
+  background: url(../images/ico_sad_face.png) no-repeat;
+  background-size: 63px;
+  vertical-align: middle;
+}
+
+.ico_sad_face_01 {
+  background: url(../images/ico_sad_face_01.png) no-repeat;
+  background-size: 63px;
+}
+
+.ico_title_01 {
+  position: absolute;
+  top: -12px;
+  left: 50%;
+  width: 210px;
+  height: 34px;
+  background: url(../images/ico_title_01.png) no-repeat;
+  background-size: 210px;
+  vertical-align: middle;
+  margin-left: -105px;
+}
+
+.title_area_sty {
+  display: inline-block;
+  padding: 0 35px;
+  height: 35px;
+  line-height: 35px;
+  font-size: 16px;
+  color: #fff;
+  background-color: #FF4F1E;
+  margin: 0 auto;
+}
+
+.title_area_sty_01 {
+  display: inline-block;
+  padding: 0 10px;
+  height: 24px;
+  line-height: 24px;
+  font-size: 14px;
+  color: #333333;
+  background-color: #F8EFCF;
+}
+
+.tac_scroll_area {
+  overflow: scroll;
+  height: 370px;
+}
+
+.ipt_01 {
+  display: inline-block;
+  width: 100%;
+  height: 50px;
+  line-height: 50px;
+  padding: 0 10px;
+  font-size: 14px;
+  border: 1px solid #E9E7E1;
+  border-radius: 5px;
+  outline: none;
+  resize: none;
+}
+
+.textarea_01 {
+  display: inline-block;
+  width: 100%;
+  height: 75px;
+  line-height: 20px;
+  padding: 12px 10px;
+  font-size: 14px;
+  border: 1px solid #E9E7E1;
+  border-radius: 5px;
+  outline: none;
+  resize: none;
+}
+
+/*九宫格抽奖-样式*/
+
+.outside_area {
+  position:relative;
+  padding: 0 25px;
+}
+
+.table_area {
+  position:absolute;
+  left:0;
+  top:0;
+  width:100%;
+  height:100%;
+  padding:24px 52px 29px;
+}
+
+.reward_table {
+  width:100%;
+  height:100%;
+  text-align:center;
+}
+
+.reward_table tr{ height:33.33%; }
+
+
+.content_area {
+  width:96%;
+  height:100%;
+  background:#FEE2CB;
+  margin:0 auto 0 auto;
+  padding-bottom:6%;
+  border-radius:8px;
+}
+
+.content_area .fz_sty {
+  width: 67px;
+  margin-top: 4px;
+  font-size: 12px;
+  line-height: 14px;
+  color: #793C31;
+  margin-left: auto;
+  margin-right: auto;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.vertical_align {
+  width:100%;
+  height:100%;
+  background: #FEF9ED;
+  border-radius:8px;
+  padding: 5px 0 0;
+}
+
+.vertical_align img { width: 38px; height: 40px; }
+
+.content_area.bg1 { background: #FF7A09; }
+
+.active .vertical_align{ background:#FFA837; }
+.active.content_area { background: #FF7A09; }
+.active.content_area .fz_sty { color: #fff; }
+
+.vertical_align.rotate_btn {
+  background:#FCE12C url(../images/ico_rotate_bg.png) center center no-repeat;
+  background-size:cover;
+}
+/*九宫格抽奖-样式结尾*/
+
+/*砸金蛋抽奖-样式*/
+
+.egg_list_sty .egg_location {
+  position: absolute;
+  width: 71px;
+  height: 95px;
+}
+
+.egg_location_00 {
+  left: 25px;
+  top: 128px;
+  z-index: 2;
+}
+
+.egg_location_01 {
+  left: 79px;
+  top: 110px;
+  z-index: 1;
+}
+
+.egg_location_02 {
+  left: 120px;
+  top: 140px;
+  z-index: 2;
+}
+
+.egg_location_03 {
+  left: 165px;
+  top: 110px;
+  z-index: 1;
+}
+
+.egg_location_04 {
+  left: 210px;
+  top: 127px;
+  z-index: 1;
+}
+
+.btn_show {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-left: -60px;
+  margin-top: 15px;
+  width: 120px;
+  height: 40px;
+  border: 2px solid #934215;
+  border-radius: 20px;
+  z-index: 4;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.btn_show .btn_sty {
+  position: absolute;
+  top: 0;
+  left: 2px;
+  display: inline-block;
+  width: 112px;
+  height: 30px;
+  text-align: center;
+  line-height: 30px;
+  font-size: 18px;
+  font-weight: bold;
+  color: #8B3500;
+  background-color: #FFEC17;
+  border-radius: 15px;
+  box-shadow: 0 6px 0 #F0891E;
+}
+
+.hammer_sty_pos {
+  position: absolute;
+  left: 240px;
+  top: 25px;
+  z-index: 3;
+}
+
+.ico_hammer {
+  display: inline-block;
+  width: 57px;
+  height: 62px;
+  background: url(../images/ico_hammer.png) no-repeat;
+  background-size: 57px;
+}
+
+.egg_list_sty li img.jump {
+  -webkit-animation: jump .5s infinite alternate;
+  animation: jump .2s infinite alternate;
+}
+@keyframes jump {
+  100% { transform: translateY(-10px); -webkit-transform: translateY(-10px); }
+}
+
+.ico_hammer.zd_chuizi{
+  -webkit-animation: zd_chuizi .6s cubic-bezier(0.34, -0.1, 0.32, 1.01) 1;
+  animation: zd_chuizi .6s cubic-bezier(0.34, -0.1, 0.32, 1.01) 1;
+  transform-origin: bottom right;
+  -webkit-transform-origin: bottom right;
+
+}
+
+@keyframes zd_chuizi
+{
+  0%
+  { transform: rotate(-15deg); }
+  100%
+  { transform: rotate(15deg); }
+}
+@-webkit-keyframes zd_chuizi
+{
+  0%
+  { transform: rotate(-15deg); }
+  100%
+  { transform: rotate(15deg); }
+}
+
+/*分享弹窗*/
+.share{
+  width:100%;
+  height:100%;
+  position:fixed;
+  top:0;
+  left:0;
+  z-index: 4;
+}
+.shareBg{
+  position:absolute;
+  width:100%;
+  height:100%;
+  background:#000;
+  opacity:0.6;
+}
+.sharePic{
+  position: absolute;
+  top: 5%;
+  left: 0;
+  z-index: 5;
+}
+
+.ico_ok_sty {
+  display: inline-block;
+  width: 116px;
+  height: 48px;
+  background: url(../images/ico_ok.png) no-repeat;
+  background-size: 116px;
+  vertical-align: middle;
+}
+
+.prizes_btn_pos {
+  position: relative;
+  width: 100%;
+  text-align: center;
+  z-index: 2;
+}
+
+/*翻牌-样式*/
+
+.item_backcard {
+  width: 33%;
+  padding: 15px 5%;
+  margin: 15px 0;
+  position: relative;
+}
+
+.top_img {
+  width: 100%;
+}
+
+.card_in {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+  top: 0;
+  left: 0;
+  text-align: center;
+  color: #666666;
+}
+
+.ico_logo_card {
+  width: 70%;
+  margin-top: 5px;
+}
+.item_backcard .prize_fz {
+  width: 68px;
+  display:-webkit-box;
+  -webkit-box-orient:vertical;
+  -webkit-line-clamp:2;
+  -moz-box-orient:vertical;
+  -moz-line-clamp:2;
+  text-overflow: ellipsis;
+  display: box;
+  box-orient: vertical;
+  line-clamp:2;
+  overflow: hidden;
+}
+
+/*.backface .ico_logo_card {
+  border: solid 1px #FCCB4B;
+}*/
+
+.frontface .card_in {
+  color: #666666;
+}
+
+.active .frontface .card_in { color: #FFFF00; }
+
+.card-area{
+  position:relative;
+  overflow:hidden;
+}
+.frontface {
+  width: 80%;
+  position:absolute;
+  top:0;
+  left:10%;
+  -moz-backface-visibility:hidden;
+  -o-backface-visibility:hidden;
+  -webkit-backface-visibility:hidden;
+  backface-visibility:hidden;
+  z-index:2;
+  background-color: #fff;
+  padding: 3px;
+  border-radius: 5px;
+}
+.backface{
+  width: 80%;
+  display:block;
+  position:absolute;
+  left:10%;
+  top:0;
+  -moz-transform:rotateY(180deg);
+  -o-transform:rotateY(180deg);
+  -webkit-transform:rotateY(180deg);
+  transform:rotateY(180deg);
+  padding: 3px;
+  background-color: #fff;
+  border-radius: 5px;
+  z-index:1;
+}
+.flip{
+  -webkit-transform:rotateY(180deg);
+  -moz-transform:rotateY(180deg);
+  -o-transform:rotateY(180deg);
+  transform:rotateY(180deg);
+}
+.mousein{
+  -moz-transition:all 0.5s !important;
+  -webkit-transition:all 0.5s !important;
+  -o-transition: all 0.5s !important;
+  transition: all 0.5s !important;
+}
+/*翻牌样式-结尾*/
+
+/* 提示框 */
+.bomb_box_wrap {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1003;
+  background: rgba(0,0,0,.6);
+  overflow: auto;
+}
+.bomb_box {
+  position: relative;
+  top: 50%;
+  width: 100%;
+  min-height: 120px;
+  border-radius: 10px;
+  margin: -75px auto 0;
+}
+.bomb_box_text {
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  padding: 128px 83px 70px;
+  width: 320px;
+  height: 340px;
+  text-align: center;
+  background: url(../images/ico_tac_bg_00.png) no-repeat;
+  background-size: 320px;
+  margin: 0 auto;
+}
+
+.bomb_box_text_2 {
+  padding: 20px;
+  width: 80%;
+  text-align: center;
+  background: #fff;
+  border-radius: 5px;
+  margin: 0 auto;
+}
+
+.bomb_box_text_3 {
+  padding: 0 15px 30px;
+  width: 90%;
+  text-align: center;
+  background: #FFF7E8;
+  border-radius: 5px;
+  margin: 0 auto;
+}
+
+.bomb_box_title {
+  position: relative;
+  height: 38px;
+  text-align: center;
+  line-height: 38px;
+}
+
+.btn_colse_bomb_box,.btn_colse_bomb_box_01 {
+  position: absolute;
+  top:38px;
+  right: 55px;
+  display: inline-block;
+  width: 29px;
+  height: 61px;
+  background: url(../images/ico_close_00.png) no-repeat;
+  background-size: 29px;
+  vertical-align: middle;
+}
+
+.btn_colse_bomb_box_01 {
+  top:-61px;
+  right: -9px;
+}
+
+.animation_1 {
+  -webkit-animation: right_to_left .3s;
+  animation: right_to_left .3s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+}
+.animation_2 {
+  -webkit-animation: left_to_right .3s;
+  animation: left_to_right .3s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+}
+
+.slyder_prize {
+  display: inline-block;
+  width: 70px;
+  line-height: 16px;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+@-webkit-keyframes right_to_left {
+  from {opacity: 0; -webkit-transform: translateX(800px); transform: translateX(800px);}
+  to {opacity: 1; -webkit-transform: translateX(0); transform: translateX(0);}
+}
+@keyframes right_to_left {
+  from {opacity: 0; -webkit-transform: translateX(800px); transform: translateX(800px);}
+  to {opacity: 1; -webkit-transform: translateX(0); transform: translateX(0);}
+}
+
+@-webkit-keyframes left_to_right {
+  from {/*opacity: 1; -webkit-transform: translateX(0); transform: translateX(0);*/}
+  to {opacity: 0; -webkit-transform: translateX(-800px); transform: translateX(-800px);}
+}
+@keyframes left_to_right {
+  from {/*opacity: 1; -webkit-transform: translateX(0); transform: translateX(0);*/}
+  to {opacity: 0; -webkit-transform: translateX(-800px); transform: translateX(-800px);}
+}
+
+@media only screen and (min-width:320px){
+  .rank_table tr td:nth-child(2) div { width: 80px; }
+  .rank_table_01 tr td:nth-child(2) div {  width: 110px; }
+  .item_backcard .prize_fz { width: 60px; }
+  .slyder_prize { width: 82px; }
+}
+
+@media only screen and (min-width:360px){
+  .rank_table tr td:nth-child(2) div { width: 120px; }
+  .rank_table_01 tr td:nth-child(2) div {  width: 140px; }
+  .table_area { padding: 30px 56px 36px; }
+  .vertical_align { padding: 10px 5px 0; }
+
+  .egg_list_sty .egg_location { width: 81px; height: 108px; }
+  .egg_location_00 { left: 32px; top: 142px; }
+  .egg_location_01 { left: 85px; top: 110px; }
+  .egg_location_02 { left: 132px; top: 155px; }
+  .egg_location_03 { left: 178px; top: 110px; }
+  .egg_location_04 { left: 230px; top: 140px; }
+  .hammer_sty_pos { left: 260px; top: 32px; }
+
+  /*九宫格抽奖文字处理*/
+  .content_area .fz_sty { width: 66px; }
+  .bomb_box_text {
+    padding: 140px 83px 70px;
+    width: 360px;
+    height: 382px;
+    background-size: 360px;
+  }
+
+  .btn_colse_bomb_box {
+    top: 51px;
+    right: 62px;
+  }
+  .item_backcard .prize_fz { width: 68px; }
+  .slyder_prize { width: 85px; }
+}
+
+@media only screen and (min-width:375px){
+  .rank_table tr td:nth-child(2) div { width: 135px; }
+  .rank_table_01 tr td:nth-child(2) div {  width: 140px; }
+  .table_area { padding: 32px 57px 38px; }
+  .vertical_align { padding: 12px 5px 0; }
+
+  .egg_list_sty .egg_location { width: 85px; height: 114px; }
+  .egg_location_00 { left: 40px; top: 140px; }
+  .egg_location_01 { left: 89px; top: 110px; }
+  .egg_location_02 { left: 140px; top: 160px; }
+  .egg_location_03 { left: 185px; top: 110px; }
+  .egg_location_04 { left: 235px; top: 140px; }
+  .hammer_sty_pos { left: 280px; top: 35px; }
+
+  /*九宫格抽奖文字处理*/
+  .content_area .fz_sty { width: 71px; }
+
+  .bomb_box_text {
+    padding: 158px 83px 70px;
+    width: 375px;
+    height: 399px;
+    background-size: 375px;
+  }
+
+  .btn_colse_bomb_box {
+    top: 55px;
+    right: 64px;
+  }
+  .item_backcard .prize_fz { width: 78px; }
+  .slyder_prize { width: 92px; }
+}
+
+@media only screen and (min-width:412px){
+  .rank_table_01 tr td:nth-child(2) div {  width: 141px; }
+  .table_area { padding: 34px 60px 41px; }
+  .vertical_align { padding: 16px 5px 0; }
+
+  .egg_list_sty .egg_location { width: 98px; height: 131px; }
+  .egg_location_00 { left: 45px; top: 156px; }
+  .egg_location_01 { left: 100px; top: 110px; }
+  .egg_location_02 { left: 150px; top: 178px; }
+  .egg_location_03 { left: 210px; top: 110px; }
+  .egg_location_04 { left: 255px; top: 149px; }
+  .hammer_sty_pos { left: 310px; top: 40px; }
+
+  /*九宫格抽奖文字处理*/
+  .content_area .fz_sty { width: 81px; }
+
+  .bomb_box_text {
+    padding: 175px 83px 70px;
+    width: 412px;
+    height: 438px;
+    background-size: 412px;
+  }
+  .btn_colse_bomb_box {
+    top: 67px;
+    right: 72px;
+  }
+  .item_backcard .prize_fz { width: 80px; }
+  .slyder_prize { width: 94px; }
+}
+
+@media only screen and (min-width:414px){
+  .rank_table_01 tr td:nth-child(2) div {  width: 141px; }
+  .table_area { padding: 34px 60px 41px; }
+  .vertical_align { padding: 18px 5px 0; }
+
+  .egg_list_sty .egg_location { width: 100px; height: 134px; }
+  .egg_location_00 { left: 45px; top: 156px; }
+  .egg_location_01 { left: 100px; top: 115px; }
+  .egg_location_02 { left: 150px; top: 178px; }
+  .egg_location_03 { left: 210px; top: 115px; }
+  .egg_location_04 { left: 255px; top: 149px; }
+  .hammer_sty_pos { left: 308px; top: 39px; }
+
+  /*九宫格抽奖文字处理*/
+  .content_area .fz_sty { width: 82px; }
+
+  .bomb_box_text {
+    padding: 175px 83px 70px;
+    width: 414px;
+    height: 440px;
+    background-size: 414px;
+  }
+
+  .btn_colse_bomb_box {
+    top: 68px;
+    right: 72px;
+  }
+  .item_backcard .prize_fz { width: 80px; }
+  .slyder_prize { width: 94px; }
+}
+.eggBtn{
+  -webkit-tap-highlight-color: transparent;
+}
+.eggBtn img{
+  -webkit-tap-highlight-color: transparent;
+}
+.drawBtn{
+  -webkit-tap-highlight-color: transparent;
+}
+.hdgz-head{
+  margin-top:0.8rem;
+}

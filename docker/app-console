@@ -1,0 +1,20 @@
+#!/bin/bash
+
+RUN_PATH=/var/run/cron
+WORK_PATH=/var/www
+COMMON_NAME=$(echo $1|sed 's/:/./g')
+PID_FILE=$RUN_PATH/${COMMON_NAME}_$(echo $*|md5sum|awk '{print $1}').pid
+ERR_FILE=$RUN_PATH/$COMMON_NAME.err
+LOG_FILE=$RUN_PATH/$COMMON_NAME.log
+
+echo \n============[RUN_AT:`date +"%Y-%m-%d %H:%M:%S"`]================= >> $ERR_FILE
+echo \n============[RUN_AT:`date +"%Y-%m-%d %H:%M:%S"`]================= >> $LOG_FILE
+
+/usr/bin/daemon \
+  -D $WORK_PATH \
+  -F $PID_FILE \
+  -E $ERR_FILE \
+  -O $LOG_FILE \
+  -- \
+  $WORK_PATH/artisan $*
+

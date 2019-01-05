@@ -1,0 +1,3 @@
+<?php
+
+Route::post('/{{name}}/register', 'Controller@register');

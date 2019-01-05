@@ -1,0 +1,1 @@
+set $lua_code_cache on;

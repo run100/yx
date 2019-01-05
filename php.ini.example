@@ -1,0 +1,29 @@
+[opcache]
+opcache.memory_consumption=4096
+opcache.interned_strings_buffer=8
+opcache.max_accelerated_files=10240
+opcache.revalidate_freq=2
+opcache.fast_shutdown=1
+opcache.enable=0
+opcache.enable_cli=0
+opcache.enable_file_override=1
+
+
+[Date]
+date.timezone = Asia/Shanghai
+
+
+
+memory_limit = 2048M
+display_errors = off
+error_log = /var/log/php/php_error.log
+log_errors = on
+upload_max_filesize = 8M
+max_execution_time = 60
+max_input_time = 60
+
+[xdebug]
+zend_extension=/usr/local/lib/php/extensions/no-debug-non-zts-20160303/xdebug.so
+xdebug.remote_enable=1
+;去掉下行的注释，IP改成自己的固定IP可启用Web端Xdebug调试功能
+;xdebug.remote_host=192.168.48.3

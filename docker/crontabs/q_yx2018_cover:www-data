@@ -1,0 +1,7 @@
+SHELL="/bin/bash"
+PATH="/usr/local/bin:/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/sbin:/home/guxy/bin"
+APP_CONSOLE=/var/www/docker/app-console
+TZ=Asia/Shanghai
+
+#每分钟
+* * * * *    $APP_CONSOLE queue:work --tries=1 --queue=yx2018_cover redis

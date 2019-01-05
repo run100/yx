@@ -1,0 +1,56 @@
+{
+  "index_mode": "v2",
+  "keys":
+  {
+    "host":
+    {
+      "alias": "",
+      "caseSensitive": false,
+      "doc_value": true,
+      "token": [",", " ", "'", "\"", ";", "=", "(", ")", "[", "]", "{", "}", "?", "@", "&", "<", ">", "/", ":", "\n", "\t"],
+      "type": "text"
+    },
+    "http_method":
+    {
+      "alias": "",
+      "caseSensitive": false,
+      "doc_value": true,
+      "token": [",", " ", "'", "\"", ";", "=", "(", ")", "[", "]", "{", "}", "?", "@", "&", "<", ">", "/", ":", "\n", "\t"],
+      "type": "text"
+    },
+    "ip":
+    {
+      "alias": "",
+      "caseSensitive": false,
+      "doc_value": true,
+      "token": [",", " ", "'", "\"", ";", "=", "(", ")", "[", "]", "{", "}", "?", "@", "&", "<", ">", "/", ":", "\n", "\t"],
+      "type": "text"
+    },
+    "path":
+    {
+      "alias": "",
+      "caseSensitive": false,
+      "doc_value": true,
+      "token": [",", " ", "'", "\"", ";", "=", "(", ")", "[", "]", "{", "}", "?", "@", "&", "<", ">", "/", ":", "\n", "\t"],
+      "type": "text"
+    },
+    "request_time":
+    {
+      "alias": "",
+      "doc_value": true,
+      "type": "double"
+    },
+    "status": {
+      "alias": "",
+      "doc_value": true,
+      "type": "long"
+    }
+  },
+  "line":
+  {
+    "caseSensitive": false,
+    "token": [",", " ", "'", "\"", ";", "=", "(", ")", "[", "]", "{", "}", "?", "@", "&", "<", ">", "/", ":", "\n", "\t"]
+  },
+  "storage": "pg",
+  "ttl": 7
+}

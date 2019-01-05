@@ -1,0 +1,305 @@
+
+<template id="cell_rank">
+    <tr>
+        <td><i class="txt-rank" style="font-weight: bold;"></i></td>
+        <td><img class="avatar"  src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" /></td>
+        <td>
+            <div class="flex_box">
+                <span class="item"><em class="fz14 txt-name">微信名称</em></span>
+                <span><em class="mr5 fz14 cor_8 txt-donate">0</em>元</span>
+            </div>
+            <p class="mt5 lh14 cor_1">报名时间:<em class="txt-time">2018.04.13  19:23:34</em></p>
+        </td>
+    </tr>
+</template>
+<template id="tpl_ranking" title="排行榜">
+    <div class="page">
+        <div class="box bgf">
+
+            <div class="weui-search-bar" id="searchBar">
+                <form class="weui-search-bar__form">
+                    <div class="weui-search-bar__box">
+                        <i class="weui-icon-search"></i>
+                        <div type="search" class="weui-search-bar__input">输入微信昵称搜索</div>
+                        <a href="javascript:" class="weui-icon-clear"></a>
+                    </div>
+                    <label class="weui-search-bar__label" style="transform-origin: 0px 0px 0px; opacity: 1; transform: scale(1, 1);">
+                        <i class="weui-icon-search"></i>
+                        <span>输入微信昵称搜索</span>
+                    </label>
+                </form>
+            </div>
+
+            <!--公益募捐总额-->
+            <div class="re">
+                <div class="content_area_pos">
+                    <div class="pl10 pr10">
+                        <div class="mt20 tac"><i class="public_welfare_love"></i><span class="ml5 fz16 fwb cor_f vm">青春毅行公益募捐总额已达</span></div>
+                        <p class="mt15 fz36 lh36 cor_6 tac hidden"><span class="txt-total-donate">...</span><span class="fz22">元</span></p>
+                    </div>
+                </div>
+                <img src="images/banner_04.jpg" class="wp100">
+            </div><!--公益募捐总额-->
+
+
+            <!--tab-->
+            <div class="title_project_box ranking-nav">
+                @foreach($fields['line'] as $k => $v)
+                <a href="javascript:void(0);" style="width: 30%" data-line="{{$k}}" class="box_item ranking-nav-item">{{$v}}</a>
+                @endforeach
+            </div>
+
+            <div class="page-panel hidden">
+                <!--MINI线排行榜-->
+                <table class="rank_table_welfare">
+                    <colgroup>
+                        <col style="width: 15%;" />
+                        <col style="width: 15%" />
+                        <col style="width: 70%;" />
+                    </colgroup>
+                    <tbody>
+                    <td colspan="3" style="background-color: #eeeeee; font-weight: bold">TOP100</td>
+                    </tbody>
+                    <tbody class="ranking-list">
+
+                    </tbody>
+                    <tbody class="ranking-list-me-head">
+                    <td colspan="3" style="background-color: #eeeeee; font-weight: bold">我的排名</td>
+                    </tbody>
+                    <tbody class="ranking-list-me">
+
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="page-loading" style="text-align: center; padding-top: 40%;">
+                <i class="weui-loading"></i>
+            </div>
+        </div><!--box-->
+
+        <div class="nav-blank"></div>
+
+        <script type="text/javascript">
+            $(function() {
+                var Page = current_page();
+                var PageData = null;
+                var threadid = null;
+
+                var loading = Page.find('.page-loading');
+                var panel = Page.find('.page-panel');
+                var list = Page.find('.ranking-list');
+                var listMe = Page.find('.ranking-list-me');
+                var nav  = Page.find('.ranking-nav');
+
+                nav.on('click', '.ranking-nav-item', function() {
+                    loadRanking($(this).data('line'), threadid);
+                });
+
+                Page.find('.ranking-list,.ranking-list-me').on('click', 'tr', function() {
+                    var threadid = $(this).data('threadid');
+                    location.href = '/yx2018/start?from=ranking:top100&act=vote&threadid=' + threadid;
+                });
+
+                function loadRanking(line, threadid) {
+                    nav.find('.current').removeClass('current');
+                    nav.find('.ranking-nav-item[data-line='+line+']').addClass('current');
+                    loading.removeClass('hidden');
+                    panel.addClass('hidden');
+
+                    $.get('ranking', {line: line, threadid: threadid}, function(ret) {
+                        PageData = ret.data;
+
+                        loading.addClass('hidden');
+                        panel.removeClass('hidden');
+
+                        var tmp = $('#cell_rank').get(0);
+
+                        var cellRender = function(i) {
+                            if (currentList === listMe && this.rank <= 100) {
+                                return;
+                            }
+
+                            var dom = document.importNode(tmp.content.children[0], true);
+                            var $dom = $(dom);
+                            $dom.find('.txt-name').text(this.info.nickname);
+                            $dom.find('.txt-time').text(this.time);
+                            if (this.rank == 1) {
+                                $dom.find('.txt-rank').text('').addClass('ico_prize_00');
+                            } else if (this.rank == 2) {
+                                $dom.find('.txt-rank').text('').addClass('ico_prize_01');
+                            } else if (this.rank == 3) {
+                                $dom.find('.txt-rank').text('').addClass('ico_prize_02');
+                            } else {
+                                $dom.find('.txt-rank').text(this.rank)
+                            }
+                            $dom.find('.txt-donate').text(this.donate);
+                            $dom.find('.avatar').attr('src', this.info.headimgurl);
+                            $dom.data('threadid', this.threadid);
+
+                            if (PageData.me && this.threadid == PageData.me.threadid) {
+                                $dom.addClass('rank-me');
+                            }
+
+                            currentList.append(dom);
+                        };
+
+                        var currentList = list;
+                        currentList.empty();
+                        $.each(PageData.ranking, cellRender);
+
+                        currentList = listMe;
+                        currentList.empty();
+                        $.each(PageData.around, cellRender);
+
+                        if (PageData.rank <= 100 || !PageData.me) {
+                            Page.find('.ranking-list-me,.ranking-list-me-head').addClass('hidden');
+                        } else {
+                            Page.find('.ranking-list-me,.ranking-list-me-head').removeClass('hidden');
+                        }
+                    });
+                }
+
+                $.get('ranking_head', function(ret) {
+                    var data = ret.data;
+                    threadid = data.threadid;
+                    loadRanking(data.line, data.threadid);
+                    Page.find('.txt-total-donate').text(data.donate);
+                    Page.find('.txt-total-donate').closest('p').removeClass('hidden');
+                });
+
+
+                Page.find('#searchBar').click(function() {
+                    location.hash = '#search';
+                });
+            });
+        </script>
+    </div>
+</template>
+
+
+<template id="cell_search">
+    <a href="javascript:void(0);" class="weui-media-box weui-media-box_appmsg">
+        <div class="weui-media-box__hd">
+            <img class="weui-media-box__thumb avatar img3" style="height: 60px; width:60px;" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" alt="">
+        </div>
+        <div class="weui-media-box__bd">
+            <h4 class="weui-media-box__title txt-name">标题一</h4>
+        </div>
+    </a>
+</template>
+<template id="tpl_search" title="搜索">
+    <div class="page">
+
+        <div class="box">
+            <div class="weui-search-bar" id="searchBar1">
+                <form class="weui-search-bar__form">
+                    <div class="weui-search-bar__box">
+                        <i class="weui-icon-search"></i>
+                        <input type="search" class="weui-search-bar__input" id="searchInput" placeholder="输入微信昵称搜索" />
+                        <a href="javascript:" class="weui-icon-clear" id="searchClear"></a>
+                    </div>
+                    <label class="weui-search-bar__label" id="searchText" style="transform-origin: 0px 0px 0px; opacity: 1; transform: scale(1, 1);">
+                        <i class="weui-icon-search"></i>
+                        <span>输入微信昵称搜索</span>
+                    </label>
+                </form>
+                <a href="javascript:" class="weui-search-bar__cancel-btn" id="searchCancel">取消</a>
+            </div>
+            <div class="weui-cells searchbar-result hidden" id="searchResult" style="transform-origin: 0px 0px 0px; opacity: 1; margin-top: 0; transform: scale(1, 1);">
+            </div>
+            <div class="blk-nodata cor_gray hidden" style="text-align: center; margin-top: 30%;">未查询到任何结果，请确认用户昵称是否正确</div>
+        </div>
+
+        <script type="text/javascript">
+            $(function() {
+                var Page = current_page();
+                var $searchBar = Page.find('#searchBar1'),
+                    $searchResult = Page.find('#searchResult'),
+                    $searchText = Page.find('#searchText'),
+                    $searchInput = Page.find('#searchInput'),
+                    $searchClear = Page.find('#searchClear'),
+                    $searchCancel = Page.find('#searchCancel'),
+                    $blkNodata = Page.find('.blk-nodata');
+
+                function hideSearchResult(){
+                    $searchResult.addClass('hidden');
+                    $searchInput.val('');
+                }
+                function cancelSearch(){
+                    hideSearchResult();
+                    $searchBar.removeClass('weui-search-bar_focusing');
+                    $searchText.show();
+                    location.hash = '#ranking';
+                }
+
+                var ajax = null;
+                var ajaxTask = null;
+                var tmp = $('#cell_search').get(0);
+
+                $searchInput
+                    .on('blur', function () {
+                        if(!this.value.length) cancelSearch();
+                    })
+                    .on('input', function(){
+                        if(this.value.length) {
+                            $searchResult.removeClass('hidden');
+
+                            if (ajax) {
+                                clearTimeout(ajax);
+                                ajax = null;
+                            }
+
+                            if (ajaxTask) {
+                                ajaxTask.abort();
+                                ajaxTask = null;
+                            }
+
+                            var txt = this.value;
+                            ajax = setTimeout(function() {
+                                $blkNodata.addClass('hidden');
+
+                                ajaxTask = $.get('search_name', {k: txt}, function(ret) {
+                                    if (ret.code !== 0) {
+                                        return;
+                                    }
+
+                                    $searchResult.empty();
+
+                                    if (ret.data.length) {
+                                        $blkNodata.addClass('hidden');
+                                    } else {
+                                        $blkNodata.removeClass('hidden');
+                                    }
+
+                                    $.each(ret.data, function(i) {
+                                        var dom = document.importNode(tmp.content.children[0], true);
+                                        var $dom = $(dom);
+                                        $dom.find('.txt-name').text(this.nickname);
+                                        $dom.find('.avatar').attr('src', this.headimgurl);
+                                        $dom.attr('href', '/yx2018/start?from=ranking:search&act=vote&threadid=' + this.threadid);
+                                        $searchResult.append(dom);
+                                    });
+                                }, 'json');
+                            }, 200);
+
+                        } else {
+                            $searchResult.addClass('hidden');
+                        }
+                    })
+                ;
+                $searchClear.on('click', function(){
+                    hideSearchResult();
+                    $searchInput.focus();
+                });
+                $searchCancel.on('click', function(){
+                    cancelSearch();
+                    $searchInput.blur();
+                });
+
+
+                $searchBar.addClass('weui-search-bar_focusing');
+                $searchInput.focus();
+            });
+        </script>
+    </div>
+</template>

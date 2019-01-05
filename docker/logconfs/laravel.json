@@ -1,0 +1,46 @@
+{
+  "configName": "acslog-zhuanti-laravel",
+  "inputDetail":
+  {
+    "adjustTimezone": false,
+    "delayAlarmBytes": 0,
+    "delaySkipBytes": 0,
+    "discardNonUtf8": false,
+    "discardUnmatch": true,
+    "dockerFile": false,
+    "enableRawLog": false,
+    "enableTag": false,
+    "fileEncoding": "utf8",
+    "filePattern": "*.log",
+    "filterKey": [],
+    "filterRegex": [],
+    "key": ["time", "env", "level", "msg", "file", "stack_trace"],
+    "localStorage": true,
+    "logBeginRegex": "\\[\\d+-\\d+-\\d+\\s\\d+:\\d+:\\d+]\\s.*",
+    "logPath": "/acs/log/zhuanti/laravel",
+    "logTimezone": "",
+    "logType": "common_reg_log",
+    "maxDepth": 1000,
+    "maxSendRate": -1,
+    "mergeType": "topic",
+    "preserve": true,
+    "preserveDepth": 0,
+    "priority": 0,
+    "regex": "\\[([0-9: -]+)] (\\w+)[.](\\w+): (.*)",
+    "sendRateExpire": 0,
+    "sensitive_keys": [],
+    "tailExisted": false,
+    "timeFormat": "%Y-%m-%d %H:%M:%S",
+    "timeKey": "",
+    "topicFormat": "none"
+  },
+  "inputType": "file",
+  "logSample": "[2017-06-22 14:51:12] prod.ERROR: Symfony\\Component\\Debug\\Exception\\FatalThrowableError: Type error: Argumen, called in /var/www/app/Features/CashierDesk/Factories/WxappCartFactory.php on line 262 in /var/www/app/Features/CashierDesk/WithStrategies.php:35\nStack trace:\n#0 /var/t->addStrategy(NULL)\n#46 {main}  \n[2017-06-22 14:51:12] prod.ERROR: Symfony\\Component\\Debug\\Exception\\FatalThrowableError: Type error: Argumeen, called in /var/www/app/Features/CashierDesk/Factories/WxappCartFactory.php on line 262 in /var/www/app/Features/CashierDesk/WithStrategies.php:35\nStack trace:\n#0 /vaart->addStrategy(NULL)\n#46 {main}",
+  "outputDetail":
+  {
+    "endpoint": "cn-hangzhou-intranet.log.aliyuncs.com",
+    "logstoreName": "acslog-zhuanti-laravel",
+    "region": "cn-hangzhou"
+  },
+  "outputType": "LogService"
+}

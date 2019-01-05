@@ -1,0 +1,138 @@
+
+<template id="tpl_home" title="首页">
+    <div class="page">
+        <div class="box" style="">
+
+            <!--头部-图片-->
+            <div><img src="images/banner_00.jpg" class="wp100"></div>
+
+            <div class="re">
+                <div class="content_area_pos">
+                    <div class="pl30 pr30 buttons hidden">
+                        <p class="fz16 lh16 tac cor_4">已有<span class="ml5 mr5 cor_5 txt-members">.</span>人关注了公益活动</p>
+                        <!--按钮-->
+                        <div class="mt15 tac"><a href="javascript:;" class="btn_1 btn-baoming current"><i class="weui-loading hidden"></i>预约报名</a></div>
+                        <div class="mt10 tac"><a href="javascript:;" class="btn_2 btn-chaxun current"><i class="weui-loading hidden"></i>报名查询</a></div>
+                        <div class="mt10 tac"><a href="http://yx.365jia.cn/yx2018" class="btn_3 btn-about">关于毅行</a></div>
+
+                        <div class="fz14 cor_gray" style="text-align: center; margin-top: 28px;">客服电话: <a href="tel:4008484365" style="color: #e62e20">400-8484-365 转 5610</a></div>
+                    </div><!--pl30 pr30-->
+                    <div class="page-loading" style="text-align: center; padding-top: 20%; background-color: transparent">
+                        <i class="weui-loading"></i>
+                    </div>
+                </div><!--content_area_pos-->
+
+
+
+                <img src="images/banner_01.jpg" class="wp100">
+            </div><!--re-->
+        </div>
+
+        <div class="nav-blank"></div>
+        <script type="text/javascript">
+            $(function() {
+                var PageData = {};
+                var Page = current_page();
+
+                Page.find('.btn-baoming').click(function() {
+                    var loading = $(this).find('.weui-loading');
+                    if (loading.is(':visible')) {
+                        return;
+                    }
+
+                    loading.removeClass('hidden');
+                    $.get('status', function(ret) {
+                        //微信认证校验失败
+                        if (ret.code === 10014) {
+                            location.href = '/yx2018/start?from=token_expired:home_baoming';
+                            return;
+                        }
+
+                        loading.addClass('hidden');
+                        if (ret.code !== 0) {
+                            return;
+                        }
+
+                        if (!ret.data.can_baoming) {
+                            weui_alert(ret.data.baoming_notice);
+                            return false;
+                        }
+
+                        location.hash = '#consent';
+                    }, 'json');
+                });
+                Page.find('.btn-chaxun').click(function() {
+                    var loading = $(this).find('.weui-loading');
+                    if (loading.is(':visible')) {
+                        return;
+                    }
+
+                    loading.removeClass('hidden');
+                    $.get('status', function(ret) {
+                        //微信认证校验失败
+                        if (ret.code === 10014) {
+                            location.href = '/yx2018/start?from=token_expired:home_chaxun';
+                            return;
+                        }
+
+                        loading.addClass('hidden');
+                        if (ret.code !== 0) {
+                            return;
+                        }
+
+                        if (!ret.data.can_chaxun) {
+                            weui_alert(ret.data.chaxun_notice);
+                            return false;
+                        }
+
+                        location.hash = '#chaxun';
+                    }, 'json');
+
+                });
+
+                var loading = Page.find('.page-loading');
+                var buttons = Page.find('.buttons');
+
+                function reloadPage()
+                {
+                    loading.removeClass('hidden');
+                    buttons.addClass('hidden');
+
+                    $.get('status', function(ret) {
+                        //微信认证校验失败
+                        if (ret.code === 10014) {
+                            location.href = '/yx2018/start?from=token_expired:home_load';
+                            return;
+                        }
+
+                        loading.addClass('hidden');
+                        PageData = ret.data;
+
+                        if (PageData.can_baoming) {
+                            Page.find('.btn-baoming').removeClass('current');
+                        } else {
+                            Page.find('.btn-baoming').addClass('current');
+                        }
+
+                        if (PageData.can_chaxun) {
+                            Page.find('.btn-chaxun').removeClass('current');
+                        } else {
+                            Page.find('.btn-chaxun').addClass('current');
+                        }
+
+                        Page.find('.txt-members').text(PageData.members);
+
+                        buttons.removeClass('hidden');
+                    });
+                }
+
+                reloadPage();
+
+                window.HomeController = {
+                    reloadPage: reloadPage
+                };
+            })
+        </script>
+
+    </div>
+</template>

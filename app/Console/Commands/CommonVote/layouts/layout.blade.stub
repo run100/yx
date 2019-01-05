@@ -1,0 +1,31 @@
+<!doctype html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>-@yield('title')</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
+    <link rel="stylesheet" type="text/css" media="screen" href="http://365jia.cn/css/m/mobile-basic.css" />
+    <link rel="stylesheet" href="style/css.css" type="text/css" />
+    <script type="text/javascript" src="http://365jia.cn/js/jQuery/jquery-1.8.2.min.js"></script>
+    @yield('head')
+</head>
+<body>
+<div><img src="images/banner_00.jpg" class="max_wp100">
+</div>
+
+
+@yield('content')
+
+
+<!--底部栏-->
+<div class="fix_bottom bottom_nav">
+    <div class="flex_box">
+        <a href="/{{name}}" class="item"><i class="bottom_nav_1"></i><span>专题首页</span></a>
+        <a href="/{{name}}/register" class="item"><i class="bottom_nav_2"></i><span>我要报名</span></a>
+        <a href="/{{name}}/ranking" class="item"><i class="bottom_nav_3"></i><span>投票排行</span></a>
+        <a href="/{{name}}/rules" class="item"><i class="bottom_nav_4"></i><span>活动规则</span></a>
+    </div>
+</div>
+
+</body>
+</html>

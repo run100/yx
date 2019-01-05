@@ -1,0 +1,51 @@
+@extends('zhuanti::{{name}}.layout')
+
+@section('title', '详情')
+
+@section('head')
+<meta name="wanjia-data" content="Controller@details" />
+
+@endsection
+
+@section('content')
+
+
+
+<div class="con07 mb20 mar_auto cor_3">
+  <div class="pa15">
+    <p class="pt10 pb10 bb1 flex_box">
+      <span class="item tal">编号：<em>{{$user->vote_num}}</em></span>
+      <span class="cor_4 pr10"><i class="ico_stars_1"></i>{{$user->vote_amount}}票</span>
+    </p>
+    <p class="pt10 pb10 bb1"><span class="cor_4">姓名：</span><span>{{$user->name}}</span></p>
+    <p class="pt10 pb10 bb1"><span class="cor_4">照片故事：</span><span>{{$user->xuanyan}}</span></p>
+    <div class="mt15"><img src="{{$user->img}}"></div>
+    <div class="tac pt15 mb20"><a href="javascript:void(0);" class="details_btn_1 mr15"><i class="ico_stars_2 mr5"></i>送TA星星</a><a href="javascript:void(0);" class="details_btn_2">分享到朋友圈</a></div>
+  </div>
+</div>
+
+
+
+<!--分享-->
+<div class="share" style="display: none;">
+  <div class="sharePic">
+    <img src="images/ico_share_tac.png" class="max_wp100"/>
+  </div>
+  <div class="shareBg"></div>
+</div>
+
+<script type="text/javascript" src="http://365jia.cn/js/jQuery/jquery-1.8.2.min.js"></script>
+<script type="text/javascript">
+  $(function() {
+    /*分享*/
+    (function () {
+      $(".details_btn_2").click(function() {
+        $(".share").show();
+      });
+      $(".sharePic").click(function () {
+        $(".share").hide();
+      });
+    }());
+  } ())
+</script>
+@endsection

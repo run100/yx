@@ -1,0 +1,632 @@
+
+<template id="tpl_chaxun" title="查询确认">
+    <div class="page">
+        <div class="page__bd">
+            <div class="weui-flex hidden">
+                <div class="weui-flex__item" style="height: 160px; background: #00a9ff; text-align: center">
+                    BANNER
+                </div>
+            </div>
+
+            <form name="players">
+                <div class="weui-cells weui-cells_form">
+                    <div class="weui-cell">
+                        <div class="weui-cell__hd">
+                            <label class="weui-label">姓名</label>
+                        </div>
+                        <div class="weui-cell__bd">
+                            <input name="name" class="weui-input" type="text" placeholder="请输入姓名"/>
+                        </div>
+                        <div class="weui-cell__ft">
+                            <i class="weui-icon-warn"></i>
+                        </div>
+                    </div>
+
+                    <div class="weui-cell weui-cell_select weui-cell_select-after">
+                        <div class="weui-cell__hd">
+                            <label class="weui-label">证件类型</label>
+                        </div>
+                        <div class="weui-cell__bd">
+                            <select class="weui-select" name="passport_type">
+                                @foreach($fields['passport'] as $k => $v)
+                                <option value="{{$k}}">{{$v}}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="weui-cell">
+                        <div class="weui-cell__hd">
+                            <label class="weui-label">证件号码</label>
+                        </div>
+                        <div class="weui-cell__bd">
+                            <input name="passport" class="weui-input" type="text" placeholder="请输入证件号码">
+                        </div>
+                        <div class="weui-cell__ft">
+                            <i class="weui-icon-warn"></i>
+                        </div>
+                    </div>
+                </div>
+            </form>
+
+            <div class="weui-btn-area">
+                <a class="weui-btn weui-btn_primary btn-submit" href="javascript:"><i class="weui-loading hidden"></i><span class="btn-text">查询</span></a>
+            </div>
+        </div>
+        <script type="text/javascript">
+            $(function() {
+                var Page = current_page();
+
+                //select 默认色
+                Page.find('select.cor_gray').change(function() {
+                    if ($(this).val() == '') {
+                        $(this).addClass('cor_gray');
+                    } else {
+                        $(this).removeClass('cor_gray');
+                    }
+                });
+
+                //身份证不需要填性别和年龄
+                Page.find('select[name=passport_type]').change(function() {
+                    if ($(this).val() == 'SFZ') {
+                        Page.find('input[name=age],select[name=gender]').closest('.weui-cell').addClass('hidden');
+                    } else {
+                        Page.find('input[name=age],select[name=gender]').closest('.weui-cell').removeClass('hidden');
+                    }
+                });
+
+                //字段 <=> 控件 对应关系
+                var input_mapping = {
+                    name: Page.find('input[name=name]'),
+                    passport_type: Page.find('select[name=passport_type]'),
+                    passport: Page.find('input[name=passport]')
+                };
+
+                function resetWarning() {
+                    Page.find('.weui-cell_warn').removeClass('weui-cell_warn');
+                }
+
+                function addWarning(field) {
+                    input_mapping[field].closest('.weui-cell').addClass('weui-cell_warn');
+                }
+
+                function fetchPlayer() {
+                    var player = {};
+                    for (var k in input_mapping) {
+                        player[k] = input_mapping[k].val().replace(/(^\s+)|(\s+$)/g, '');
+                    }
+                    player.line = $('.container .page.nums select[name=line]').val();
+                    return player;
+                }
+
+                function checkPlayer(player) {
+                    resetWarning();
+
+                    if (player.name == '') {
+                        weui_alert('请填写选手姓名');
+                        addWarning('name');
+                        return false;
+                    }
+
+                    if (player.passport == '') {
+                        weui_alert('请填写证件号码');
+                        addWarning('passport');
+                        return false;
+                    }
+
+                    return true;
+                }
+
+                function searchPlayer(player, callback, loading) {
+                    return $.post('search_player', player, function(ret) {
+                        if (ret.code !== 0) {
+
+                            if (ret.code === 2) {
+                                location.hash = '#chaxun_warn2';
+                                loading.addClass('hidden');
+                                return;
+                            } else if (ret.code === 3) {
+                                location.hash = '#chaxun_warn3';
+                                loading.addClass('hidden');
+                                return;
+                            }
+
+                            weui_alert(ret.msg);
+                            loading.addClass('hidden');
+                            return;
+                        }
+
+                        callback(ret.data);
+                    }, 'json').fail(function(ret) {
+                        loading.addClass('hidden');
+                        showError(ret);
+                    });
+                }
+
+
+                function showError(ret) {
+                    if (!ret) {
+                        return false;
+                    }
+
+                    if (ret.status !== 422) {
+                        return false;
+                    }
+
+                    ret = $.parseJSON(ret.responseText);
+
+                    if (!ret.errors) {
+                        return false;
+                    }
+
+                    for (var i in ret.errors) {
+                        for (var j in ret.errors[i]) {
+                            weui_alert(ret.errors[i][j]);
+                            addWarning(i);
+                            return true;
+                        }
+                        break;
+                    }
+                }
+
+
+                Page.find('.btn-submit').click(function() {
+                    Page.find('input').blur();
+
+                    var loading = $(this).find('.weui-loading');
+
+                    if ($(this).find('.weui-loading:visible').size()) {
+                        return false;
+                    }
+
+                    var player = fetchPlayer();
+                    if (!checkPlayer(player)) {
+                        return false;
+                    }
+
+                    loading.removeClass('hidden');
+
+                    searchPlayer(player, function(player) {
+                        loading.addClass('hidden');
+                        window.location.hash = '#players';
+
+                        setTimeout(function() {
+                            window.PlayersController.load([player], true);
+                        }, window.waitTime);
+                    }, loading);
+                });
+            });
+        </script>
+    </div>
+</template>
+
+<template id="tpl_chaxun_warn2" title="很遗憾">
+    <div class="page">
+        <div class="weui-msg">
+            <div class="weui-msg__icon-area"><i class="weui-icon-warn weui-icon_msg"></i></div>
+            <div class="weui-msg__text-area">
+                <h2 class="weui-msg__title">很遗憾，您未能成功获取毅行名额！</h2>
+                <p class="weui-msg__desc">非常感谢您的公益募捐以及对贫困青少年人群的帮扶。希望您持续关注本活动最新动态</p>
+            </div>
+            <div class="weui-msg__opr-area">
+                <p class="weui-btn-area">
+                    <a href="http://yx.365jia.cn/yx2018" class="weui-btn weui-btn_primary">关于毅行</a>
+                    <a href="javascript:home();" class="weui-btn weui-btn_default">再看看</a>
+                </p>
+            </div>
+        </div>
+    </div>
+</template>
+
+<template id="tpl_chaxun_warn3" title="很遗憾">
+    <div class="page">
+        <div class="weui-msg">
+            <div class="weui-msg__icon-area"><i class="weui-icon-warn weui-icon_msg"></i></div>
+            <div class="weui-msg__text-area">
+                <h2 class="weui-msg__title">很遗憾，您因逾期未补充报名信息，名额已被释放！</h2>
+                <p class="weui-msg__desc">非常感谢您的公益募捐以及对贫困青少年人群的帮扶，让爱心汇聚，让希望延续。希望您持续关注本活动最新动态</p>
+            </div>
+            <div class="weui-msg__opr-area">
+                <p class="weui-btn-area">
+                    <a href="http://yx.365jia.cn/yx2018" class="weui-btn weui-btn_primary">关于毅行</a>
+                    <a href="javascript:home();" class="weui-btn weui-btn_default">再看看</a>
+                </p>
+            </div>
+        </div>
+    </div>
+</template>
+
+
+
+<template id="cell_player">
+    <div class="item-player">
+        <div class="weui-form-preview">
+            <div class="weui-form-preview__hd">
+                <div class="weui-form-preview__item">
+                    <label class="weui-form-preview__label txt-name" style="text-align: left; text-align-last: left;">Name</label>
+                    <em class="weui-form-preview__value txt-ticket_no" style="font-size: 1em">Ticket_No</em>
+                </div>
+            </div>
+            <div class="weui-form-preview__bd">
+                <div class="weui-form-preview__item">
+                    <label class="weui-form-preview__label">性别</label>
+                    <span class="weui-form-preview__value txt-gender">X</span>
+                </div>
+                <div class="weui-form-preview__item">
+                    <label class="weui-form-preview__label">年龄</label>
+                    <span class="weui-form-preview__value txt-age">X</span>
+                </div>
+                <div class="weui-form-preview__item">
+                    <label class="weui-form-preview__label">手机号码</label>
+                    <span class="weui-form-preview__value txt-phone">XXX</span>
+                </div>
+                <div class="weui-form-preview__item">
+                    <label class="weui-form-preview__label">证件类型</label>
+                    <span class="weui-form-preview__value txt-passport_type">XXX</span>
+                </div>
+                <div class="weui-form-preview__item">
+                    <label class="weui-form-preview__label">证件号码</label>
+                    <span class="weui-form-preview__value txt-passport">XXX</span>
+                </div>
+                <div class="weui-form-preview__item">
+                    <label class="weui-form-preview__label">目标终点</label>
+                    <span class="weui-form-preview__value txt-line">XXX XXX</span>
+                </div>
+                <div class="weui-form-preview__item hidden">
+                    <label class="weui-form-preview__label">T恤尺码</label>
+                    <span class="weui-form-preview__value txt-size">XXX XXX</span>
+                </div>
+                <div class="weui-form-preview__item hidden">
+                    <label class="weui-form-preview__label">T恤尺码</label>
+                    <span class="weui-form-preview__value"><a href="javascript:;" class="weui-btn weui-btn_mini weui-btn_default btn-size">选择衣服尺码</a></span>
+                </div>
+                <div class="weui-form-preview__item hidden">
+                    <label class="weui-form-preview__label">现居住地</label>
+                    <span class="weui-form-preview__value txt-city">xxx</span>
+                </div>
+                <div class="weui-form-preview__item hidden">
+                    <label class="weui-form-preview__label">现居住地</label>
+                    <span class="weui-form-preview__value"><a href="javascript:;" class="weui-btn weui-btn_mini weui-btn_default btn-city">选择现居住地</a></span>
+                </div>
+                <div class="weui-form-preview__item hidden">
+                    <label class="weui-form-preview__label">物资领取</label>
+                    <span class="weui-form-preview__value txt-supply_loc">XXX</span>
+                </div>
+            </div>
+        </div>
+        <br/>
+    </div>
+</template>
+<template id="tpl_players" title="选手信息">
+    <div class="page">
+
+
+        <div class="page-loading" style="text-align: center; padding-top: 60%;">
+            <i class="weui-loading"></i>
+        </div>
+
+        <div class="info hidden">
+
+            <div class="page__hd">
+                <h1 class="page__title">选手信息确认</h1>
+                <p class="page__desc">请查看并核对报名人信息</p>
+            </div>
+            <div class="page__bd players">
+            </div>
+            <div class="panel-loc hidden">
+                <div class="weui-cells__title">毅行物资领取地点</div>
+                <div class="weui-cells">
+                    <label class="weui-cell">
+                        <div class="weui-cell__hd">
+                            <i class="weui-icon-success" style="margin-right: 10px"></i>
+                        </div>
+                        <div class="weui-cell__bd">
+                            <p>
+                                <strong>天珑广场</strong><br/>
+                                潜山路与习友路交口东北角
+                            </p>
+                        </div>
+                    </label>
+                </div>
+            </div>
+
+            <div style="height:90px;"></div>
+        </div>
+
+        <div class="bar hidden" style="padding:5px 10px; position:fixed; left:0;right:0;bottom:0; background-color: #f8f8f8; z-index: 10">
+            <a href="javascript:;" class="weui-btn weui-btn_primary btn-confirm"><i class="weui-loading hidden"></i>确认参加</a>
+            <a href="javascript:;" class="weui-btn weui-btn_primary btn-my hidden">个人中心</a>
+        </div>
+
+        <script type="text/javascript">
+            $(function() {
+                var Page = current_page();
+                var PageData = null;
+                var loading = Page.find('.page-loading');
+                var players = Page.find('.players');
+                var info = Page.find('.info');
+                var pendingUpdate = {};
+
+                function updateCity(dom, city) {
+                    if (!city) {
+                        return '';
+                    }
+
+                    city = city + '';
+
+                    var stack = [];
+                    var node = city;
+                    while (node && (node != '86')) {
+                        var old = node;
+                        for (var i in fieldConfs.city) {
+                            for (var j in fieldConfs.city[i]) {
+                                var brk = 0;
+                                if (j === node) {
+                                    stack.unshift(node);
+                                    node = i;
+                                    brk = 1;
+                                    break;
+                                }
+                            }
+                            if (brk) {
+                                break;
+                            }
+                        }
+
+                        if (old === node) {
+                            node = null;
+                        }
+                    }
+
+                    var str = '';
+                    if (stack[0]) {
+                        str += ' ' + fieldConfs.city['86'][stack[0]];
+                    }
+                    if (stack[1]) {
+                        str += ' ' + fieldConfs.city[stack[0]][stack[1]];
+                    }
+                    if (stack[2]) {
+                        str += ' ' + fieldConfs.city[stack[1]][stack[2]];
+                    }
+
+                    dom.find('.txt-city').text(str.substr(1)).closest('.weui-form-preview__item').removeClass('hidden');
+                    dom.find('.btn-city').closest('.weui-form-preview__item').addClass('hidden');
+                    dom.find('.txt-city').append(' <a href="javascript:;" class="btn-city" style="color: #00a9ff; text-decoration: underline" data-phone="'+dom.find('.btn-city').data('phone')+'">修改</a>')
+                }
+
+
+                Page.find('.btn-my').click(function() {
+                    PlayersController.reset();
+                    location.hash = '#my';
+                    setTimeout(function() {
+                        if (window.UserController) {
+                            window.UserController.reloadPage();
+                        }
+                    }, window.waitTime)
+                });
+
+                Page.find('.btn-confirm').click(function() {
+                    var loading = $(this).find('.weui-loading');
+
+                    if ($(this).find('.weui-loading:visible').size()) {
+                        return false;
+                    }
+
+
+                    var phones = Object.keys(pendingUpdate);
+                    for (var i in PageData) {
+                        var player = PageData[i];
+                        if (phones.indexOf(player.phone) === -1) {
+                            weui_alert('请补全 ' + player.name + ' 的报名信息');
+                            return;
+                        }
+
+                        if (!pendingUpdate[player.phone].size) {
+                            weui_alert('请补全 ' + player.name + ' 的T恤尺码');
+                            return;
+                        }
+
+                        if (!pendingUpdate[player.phone].city) {
+                            weui_alert('请补全 ' + player.name + ' 的现居住地');
+                            return;
+                        }
+                    }
+
+                    var data = {};
+                    data.supply_loc = 'U1';
+                    data.update = pendingUpdate;
+
+
+                    loading.removeClass('hidden');
+                    $.post('confirm_player', JSON.stringify(data), function(ret) {
+                        loading.addClass('hidden');
+                        if (ret.code !== 0) {
+                            weui_alert(ret.msg);
+                            return;
+                        }
+
+                        weui_alert(ret.data, function() {
+                            window.location.hash = '#my';
+                            setTimeout(function() {
+                                UserController.reloadPage();
+                            }, window.waitTime)
+                        });
+                    }, 'json').fail(function() {
+                        loading.addClass('hidden');
+                    });
+
+                });
+
+
+                Page.find('.info').on('click', '.btn-size', function() {
+                    var phone = $(this).data('phone');
+                    var body = $(this).closest('.weui-form-preview__bd');
+
+                    weui_actionsheet("选择尺码", fieldConfs.size, function(sel) {
+                        if (!pendingUpdate[phone]) {
+                            pendingUpdate[phone] = {};
+                        }
+
+                        pendingUpdate[phone].size = sel;
+
+                        body.find('.txt-size').text(fieldConfs.size[sel]).closest('.weui-form-preview__item').removeClass('hidden');
+                        body.find('.btn-size').closest('.weui-form-preview__item').addClass('hidden');
+                        body.find('.txt-size').append(' <a href="javascript:;" class="btn-size" style="color: #00a9ff; text-decoration: underline" data-phone="'+phone+'">修改</a>');
+                    });
+                });
+
+                Page.find('.info').on('click', '.btn-city', function() {
+                    var phone = $(this).data('phone');
+                    var body = $(this).closest('.weui-form-preview__bd');
+
+
+                    var data = fieldConfs.city['86'];
+                    var items = [{name: '安徽省', key: '340000'}];
+                    for (var i in data) {
+                        if (i === '340000') {
+                            continue;
+                        }
+
+                        items.push({
+                            key:    i,
+                            name:   data[i]
+                        });
+                    }
+
+                    weui_actionsheet("选择省份", items, function(province) {
+                        if (!pendingUpdate[phone]) {
+                            pendingUpdate[phone] = {};
+                        }
+
+                        var data = fieldConfs.city[province];
+                        if (!data) {
+                            pendingUpdate[phone].city = province;
+                            updateCity(body, pendingUpdate[phone].city);
+                            return;
+                        }
+
+                        weui_actionsheet("选择城市", data, function(city) {
+                            var data = fieldConfs.city[city];
+                            if (!data) {
+                                pendingUpdate[phone].city = city;
+                                updateCity(body, pendingUpdate[phone].city);
+                                return;
+                            }
+
+                            weui_actionsheet("选择区域", data, function(region) {
+                                pendingUpdate[phone].city = region;
+                                updateCity(body, pendingUpdate[phone].city);
+                            });
+                        });
+
+                    });
+                });
+
+
+                var tmp = $('#cell_player').get(0);
+
+                window.PlayersController = {
+                    reset: function() {
+                        loading.removeClass('hidden');
+                        info.addClass('hidden');
+                    },
+
+                    load: function(data, single) {
+                        PageData = data;
+
+                        Page.find('.btn-confirm').closest('.bar').addClass('hidden');
+                        Page.find('.panel-loc').addClass('hidden');
+
+                        if (data[0].ticket_no && !data[0].supply_loc && !single) {
+                            Page.find('.btn-my').addClass('hidden');
+                            Page.find('.btn-confirm').removeClass('hidden').closest('.bar').removeClass('hidden');
+                        }
+
+                        if (single && data[0].buttons && (data[0].buttons.indexOf('my') !== -1)) {
+                            Page.find('.btn-my').removeClass('hidden');
+                            Page.find('.btn-confirm').addClass('hidden').closest('.bar').removeClass('hidden');
+                        }
+
+                        if (!data[0].ticket_no) {
+                            Page.find('.page__title').text('预报名成功');
+                        } else {
+                            if (!single) {
+                                Page.find('.page__title').text('名额获取成功');
+                                if (!data[0].supply_loc) {
+                                    Page.find('.page__desc').text('恭喜您获得毅行大会名额！请完善以下您的报名信息，并确认是否参加');
+                                    Page.find('.panel-loc').removeClass('hidden');
+                                }
+                            } else {
+                                if (!data[0].supply_loc) {
+                                    Page.find('.page__title').text('恭喜您！');
+                                    Page.find('.page__desc').text('在公益排行榜中脱颖而出！获得2018环巢湖毅行大会名额，请队长快去"个人中心"页面完善和确认您的报名资料吧！');
+                                } else {
+                                    Page.find('.page__title').text('恭喜您！');
+                                    Page.find('.page__desc').text('在公益排行榜中脱颖而出！获得2018环巢湖毅行大会名额！');
+                                }
+                            }
+                        }
+
+                        players.empty();
+                        $.each(data, function() {
+                            var player = this;
+
+                            var dom = document.importNode(tmp.content.children[0], true);
+                            var $dom = $(dom);
+
+                            $dom.find('.txt-name').text(player.name);
+                            $dom.find('.txt-phone').text(player.phone);
+                            $dom.find('.txt-passport_type').text(player.txt_passport_type);
+                            $dom.find('.txt-passport').text(player.passport);
+                            $dom.find('.txt-gender').text(player.txt_gender);
+                            $dom.find('.txt-age').text(player.age);
+                            $dom.find('.txt-line').text(player.txt_line + fieldConfs.line_length[player.line]);
+
+                            if (player.ticket_no) {
+                                $dom.find('.txt-ticket_no').removeClass('hidden').text('毅行编号: ' + player.ticket_no);
+
+                                if (player.supply_loc) {
+                                    $dom.find('.txt-supply_loc').text(player.txt_supply_loc).closest('.weui-form-preview__item').removeClass('hidden');
+                                } else {
+                                    $dom.find('.txt-supply_loc').closest('.weui-form-preview__item').addClass('hidden');
+                                }
+
+                                if (player.size) {
+                                    $dom.find('.txt-size').text(player.txt_size).closest('.weui-form-preview__item').removeClass('hidden');
+                                    $dom.find('.btn-size').closest('.weui-form-preview__item').addClass('hidden');
+                                } else {
+                                    $dom.find('.txt-size').closest('.weui-form-preview__item').addClass('hidden');
+                                    $dom.find('.btn-size').data('phone', player.phone).closest('.weui-form-preview__item').removeClass('hidden');
+                                }
+
+                                if (player.city) {
+                                    $dom.find('.txt-city').text(player.txt_city).closest('.weui-form-preview__item').removeClass('hidden');
+                                    $dom.find('.btn-city').closest('.weui-form-preview__item').addClass('hidden');
+                                } else {
+                                    $dom.find('.txt-city').closest('.weui-form-preview__item').addClass('hidden');
+                                    $dom.find('.btn-city').data('phone', player.phone).closest('.weui-form-preview__item').removeClass('hidden');
+                                }
+                            } else {
+                                $dom.find('.txt-ticket_no').addClass('hidden').text(player.ticket_no);
+                            }
+
+                            if (single) {
+                                if (!player.supply_loc) {
+                                    $dom.find('.weui-form-preview__btn_primary').text('待确认');
+                                    $dom.find('.txt-ticket_no').addClass('hidden');
+                                }
+                                $dom.find('.btn-city,.btn-size').closest('.weui-form-preview__item').addClass('hidden');
+                            }
+
+                            players.append(dom);
+
+                        });
+
+                        loading.addClass('hidden');
+                        info.removeClass('hidden');
+                    }
+                };
+            });
+        </script>
+    </div>
+</template>

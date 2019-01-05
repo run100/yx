@@ -1,0 +1,46 @@
+{
+  "configName": "acslog-zhuanti-phperr",
+  "inputDetail":
+  {
+    "adjustTimezone": false,
+    "delayAlarmBytes": 0,
+    "delaySkipBytes": 0,
+    "discardNonUtf8": false,
+    "discardUnmatch": true,
+    "dockerFile": false,
+    "enableRawLog": false,
+    "enableTag": false,
+    "fileEncoding": "utf8",
+    "filePattern": "php_error.log",
+    "filterKey": [],
+    "filterRegex": [],
+    "key": ["time", "type", "msg"],
+    "localStorage": true,
+    "logBeginRegex": "\\[\\d+-\\w+-\\d+\\s\\d+:\\d+:\\d+ Asia/Shanghai\\]\\s.*",
+    "logPath": "/acs/log/zhuanti/phperr",
+    "logTimezone": "",
+    "logType": "common_reg_log",
+    "maxDepth": 1000,
+    "maxSendRate": -1,
+    "mergeType": "topic",
+    "preserve": true,
+    "preserveDepth": 0,
+    "priority": 0,
+    "regex": "\\[(\\d+-\\w+-\\d+\\s\\d+:\\d+:\\d+) Asia/Shanghai\\] ([^:]+): (.+)",
+    "sendRateExpire": 0,
+    "sensitive_keys": [],
+    "tailExisted": false,
+    "timeFormat": "%d-%b-%Y %H:%M:%S",
+    "timeKey": "",
+    "topicFormat": "none"
+  },
+  "inputType": "file",
+  "logSample": "[22-Jun-2017 11:34:23 Asia/Shanghai] PHP Fatal error:  Uncaught Error: Call to a member function aa() on null in Command line code:1\nStack trace:\n#0 {main}\n  thrown in Command line code on line 1",
+  "outputDetail":
+  {
+    "endpoint": "cn-hangzhou-intranet.log.aliyuncs.com",
+    "logstoreName": "acslog-zhuanti-phperr",
+    "region": "cn-hangzhou"
+  },
+  "outputType": "LogService"
+}

@@ -1,0 +1,156 @@
+@extends('zhuanti::{{name}}.layout')
+@section('title', '首页')
+
+@section('head')
+<meta name="wanjia-data" content="Controller@index" />
+<meta name="wanjia-perms" content="cache:E600" />
+@endsection
+
+@section('content')
+<div class="title cf">
+    <div class="tit_left">
+        <form id="form" method="get" class="cf">
+            <input type="hidden" name="sort" value="{{ $param['sort'] ?? '' }}">
+            <input class="ipt_1 dl" type="text" value="{{ $param['search'] ?? ''}}" name="search" placeholder="请输入编号或姓名" />
+            <input type="submit" value="搜索" class="btn_search dr" href="javascript:;">
+        </form>
+    </div>
+    <div class="tit_right con04_p0 dn">我要报名</div>
+</div>
+
+<div class="con02">
+    <div class="con02_top cf">
+        <a class="sort con02_top_span" data-key="vote">按票数</a>
+        <a class="sort con02_top_span" data-key="num">按编号</a>
+    </div>
+</div>
+<div class="imghover cf pb15">
+    <ul id="lxf-box" class="endor_wrap">
+        @foreach($users as $user)
+        <li class="endor_li"> <a href="/tlbb/details?id={{$user->id}}"><img src="{{$user->img}}" width="460" height="480"/></a>
+            <div class="lxf_bot">
+                <p class="lxf_p cf"> <span class="dl">编号：<em>{{ $user->vote_num }}</em></span><span class="di cor_4 dr"><i class="ico_stars_1"></i>{{ $user->vote_amount }}票</span> </p>
+                <p class="lxf_p cf"><span class="dl">姓名：<em>{{ $user->name }}</em></span></p>
+                <p class="lxf_p1"><a class="lxf_span" data-num="{{$user->vote_num}}"><i class="ico_stars_2 mr5"></i>送TA星星</a></p>
+            </div>
+        </li>
+        @endforeach
+
+
+    </ul>
+</div>
+<!--弹窗-->
+<div class="bombBoxWrap" style="display: none;">
+    <div class="bombBox">
+        <div class="boxContent">
+            <p class="lh18 tac">
+                关注 “<span class="cor_4">今日万家热线</span>”官方微信，<br/>
+                或长按下方二维码投票，<br/>
+                回复<span class="fwb cor_4">编号NO.1150</span>即可投票，<br/>
+                活动期间每位用户仅可送出1颗星
+            </p>
+            <div class="tac mt10"><img src="images/ico_code_1.png" class="img2" alt="二维码"></div>
+        </div>
+        <span class="boxCloseBtn"><img src="images/ico_close.png" class="max_wp100"/></span>
+    </div>
+    <div class="bombBoxBg"></div>
+</div>
+
+
+
+<div class="wrap">
+    <div class="fenye">
+        <a target="_self" href="{{ $users->url(1) }}">首页</a>
+        <a target="_self" href="{{ $users->previousPageUrl() ?? $users->url(1) }}">上页</a>
+        <select class="PropelPagerForm">
+          @for($i=1; $i<=$users->lastPage(); $i++)
+          <option value="{{$i}}" {{ $i==$users->currentPage() ? 'selected' : '' }}>{{$i}}</option>
+          @endfor
+        </select>
+        <a target="_self" href="{{ $users->nextPageUrl() ?? $users->url($users->lastPage()) }}">下页</a>
+        <a target="_self" href="{{ $users->url($users->lastPage()) }}">末页</a> </div>
+</div>
+<script>
+    $('.PropelPagerForm').change(function () {
+        var url = '{!! $users->url(1) !!}';
+        var page = $(this).val();
+        location.href = url.replace('page=1', 'page='+page);
+    })
+</script>
+<script type="text/javascript">
+    var marginLeft = parseInt($(".endor_wrap li").css('marginLeft'));
+    var marginRight = parseInt($(".endor_wrap li").css('marginRight'));
+    var marginTop = parseInt($(".endor_wrap li").css('marginTop'));
+    var margin = marginLeft + marginRight;
+    function waterfall(obj){
+        var li=$(obj).find('li');
+        if(typeof(li[0]) != "undefined") {
+            var li_W = li[0].offsetWidth+margin;
+        }
+        var h=[];
+        var ww = $(document.body).width();
+        var n = ww/li_W|0;
+        for(var i = 0;i < li.length;i++) {
+            li_H = li[i].offsetHeight + marginTop;
+            if(i < n) {
+                h[i]=li_H;
+                li.eq(i).css("top",0);//第一行的Li的top值为0
+                li.eq(i).css("left",i * li_W);//第i个li的左坐标就是i*li的宽度
+            }
+            else{
+                min_H =Math.min.apply(null,h) ;//取得数组中的最小值，区块中高度值最小的那个
+                minKey = getarraykey(h, min_H);//最小的值对应的指针
+                h[minKey] += li_H ;//加上新高度后更新高度值
+                li.eq(i).css("top",min_H);//先得到高度最小的Li，然后把接下来的li放到它的下面
+                li.eq(i).css("left",minKey * li_W); //第i个li的左坐标就是i*li的宽度
+            }
+        }
+        $(obj).css('height' , h.max()); //取层的高度为最高li
+    }
+    //赋值高度
+    Array.prototype.max=function(){
+        var maxH = 0;
+        for(var i=0;i<this.length;i++){
+            maxH=Math.max(maxH,this[i]);
+        }
+        return maxH;
+    }
+    function getarraykey(s, v) {
+        for(k in s) {
+            if(s[k] == v) {
+                return k;
+            }
+        }
+    }
+    $(window).load(function(){
+        $("#tmx_loading").hide();
+        $("#lxf-box").show(function(){
+            li=$(".endor_li");
+            if(typeof(li[0]) != "undefined") {
+                li_W = li[0].offsetWidth+margin;
+            }
+            waterfall("#lxf-box");
+        })
+    });
+</script>
+
+<script type="text/javascript">
+
+    /*弹窗*/
+    (function() {
+        $(".lxf_span").click(function() {
+            $(".bombBoxWrap").show();
+        });
+        $(".bombBoxWrap").find(".boxCloseBtn").click(function() {
+            $(this).parents(".bombBoxWrap").hide();
+        });
+    } ());
+</script>
+<script>
+    $('.sort').click(function() {
+        $('[name=sort]').val($(this).data('key'));
+        $('#form').submit();
+    })
+</script>
+@endsection
+

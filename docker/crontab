@@ -1,0 +1,7 @@
+SHELL="/bin/bash"
+PATH="/usr/local/bin:/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/sbin"
+TZ=Asia/Shanghai
+
+
+* * * * *  /usr/bin/daemon -D /var/www -F /var/run/app_check.pid -E /var/run/app_check.err -O /var/run/app_check.log -- /var/www/docker/app_check
+

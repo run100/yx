@@ -1,0 +1,519 @@
+@charset "utf-8";
+
+body,div,span,dl,dd,h1,h2,h3,h4,h5,h6,p,form,pre,input,button,textarea,select,ol,li,ul,td,th,img,em,i,b,table,td,th,section,article,aside,header,footer,nav,dialog,figure,a
+{
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -ms-box-sizing: border-box;
+  -o-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+.page__hd .page__title,.page__hd .page__desc{text-align: center;}
+.nav-blank { height: .57rem; background-color: #f8f8f8;}
+.page__bd {font-size: 17px;}
+.weui-actionsheet__menu{max-height: 350px; overflow: scroll;}
+
+.page.consent .page__hd {padding: 15px;}
+.page.consent .page__desc {text-align: left;}
+.page.consent article p {text-indent: 2em;}
+
+em,i,b{font-weight:normal;font-style:normal}
+
+.box { font-size: .12rem;background-color: #F5F6F8; }
+
+.wp100 { width: 100%; }
+
+.fz36 { font-size: .36rem; }
+
+.pl45 { padding-left: .45rem; }
+
+.pr45 { padding-right: .45rem; }
+
+.lh42 { line-height: .42rem; }
+.lh36 { line-height: .36rem; }
+
+.bb1 { border-bottom: .01rem solid #B3B3B3; }
+.bb2 { border-bottom: .01rem solid #EEEEEE; }
+
+.bgf { background-color: #fff; }
+
+.cor_f { color: #fff; }
+.cor_4 { color: #444444; }
+.cor_5 { color: #FE5B00; }
+.cor_6 { color: #FFE400; }
+.cor_7 { color: #000000; }
+.cor_8 { color: #EF4744; }
+
+.img1 { width: .52rem; height: .52rem; border: .02rem solid #E0DEDF; border-radius: 100%; }
+.img2 { width: 1.02rem; height: 1.02rem; }
+.img3 { width: .64rem; height: .64rem; border: .02rem solid #fff; border-radius: 100%; }
+.img4 { width: .25rem; height: .25rem; border: .02rem solid #FAC902; border-radius: 100%; }
+.img5 { width: 1.4rem; height: .27rem; }
+
+.content_area_pos {
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.btn_1,.btn_2,.btn_3 {
+  display: inline-block;
+  width: 2.35rem;
+  height: .43rem;
+  line-height: .43rem;
+  text-align: center;
+  font-size: .16rem;
+  color: #fff;
+  border-radius: .1rem;
+}
+
+.btn_1 { background-color: #248DD1; }
+.btn_2 { background-color: #FC6C38; }
+.btn_3 { background-color: #A6CB0B; }
+
+.current.btn_1,.current.btn_2,.current.btn_3 { background-color: #B3B3B3; }
+
+.btn_4,.btn_5,.btn_8,.btn_9,.btn_10 {
+  display: inline-block;
+  width: 1.95rem;
+  height: .32rem;
+  line-height: .32rem;
+  text-align: center;
+  font-size: .16rem;
+  color: #fff;
+  border-radius: .06rem;
+}
+
+.btn_4,.btn_8 {
+  background: -webkit-linear-gradient(left, #FF9484 , #EF4844); /* Safari 5.1 - 6.0 */
+  background: -o-linear-gradient(right, #FF9484 , #EF4844); /* Opera 11.1 - 12.0 */
+  background: -moz-linear-gradient(right, #FF9484 , #EF4844); /* Firefox 3.6 - 15 */
+  background: linear-gradient(to right, #FF9484 , #EF4844); /* 标准的语法 */
+}
+
+.btn_5,.btn_9 {
+  background: -webkit-linear-gradient(left, #5BE279 , #49BB59); /* Safari 5.1 - 6.0 */
+  background: -o-linear-gradient(right, #5BE279 , #49BB59); /* Opera 11.1 - 12.0 */
+  background: -moz-linear-gradient(right, #5BE279 , #49BB59); /* Firefox 3.6 - 15 */
+  background: linear-gradient(to right, #5BE279 , #49BB59); /* 标准的语法 */
+}
+
+.btn_10 {
+  background: -webkit-linear-gradient(left, #FFBA00 , #FF6D00); /* Safari 5.1 - 6.0 */
+  background: -o-linear-gradient(right, #FFBA00 , #FF6D00); /* Opera 11.1 - 12.0 */
+  background: -moz-linear-gradient(right, #FFBA00 , #FF6D00); /* Firefox 3.6 - 15 */
+  background: linear-gradient(to right, #FFBA00 , #FF6D00); /* 标准的语法 */
+}
+
+.btn_6,.btn_7 {
+  display: inline-block;
+  width: 1.65rem;
+  height: .32rem;
+  line-height: .32rem;
+  text-align: center;
+  font-size: .16rem;
+  border-radius: .12rem;
+}
+
+.btn_6 { color: #EB5111; background-color: #FFE401; }
+.btn_7 { color: #fff; background-color: #F49503; }
+
+.btn_8,.btn_9,.btn_10 { width: 2.35rem; }
+
+.btn_11 {
+  display: inline-block;
+  width: 100%;
+  height: .34rem;
+  line-height: .34rem;
+  text-align: center;
+  font-size: .16rem;
+  color: #fff;
+  background-color: #FE5A00;
+  border-radius: .06rem;
+}
+
+/*用爱扶贫-样式*/
+.prompt_save_sty {
+  display: block;
+  position: absolute;
+  top: -.06rem;
+  left: 50%;
+  margin-left: -.09rem;
+  width: .18rem;
+  height: .21rem;
+  background: url(../images/ico_prompt_save.png) no-repeat;
+  background-size: .18rem;
+}
+
+.ico_finger_sty {
+  position: absolute;
+  top: .2rem;
+  right: .06rem;
+  width: .53rem;
+  height: .83rem;
+  background: url(../images/ico_finger.png) no-repeat;
+  background-size: .53rem;
+}
+
+.love_power_box {
+  padding: .32rem .1rem;
+  background-color: #fff;
+  border: .01rem solid #DCDCDC;
+  border-radius: .05rem;
+  text-align: center;
+  color: #444444;
+}
+
+.red_envelope_sty {
+  padding: .15rem;
+  text-align: center;
+  background-color: #ED5212;
+  border-radius: 0 0 .05rem .05rem;
+  margin-top: -.01rem;
+}
+
+/*个人中心*/
+.personal_center_box {
+  padding: .15rem;
+  text-align: center;
+  color: #fff;
+  background: -webkit-linear-gradient(#5BE279, #49BB59); /* Safari 5.1 - 6.0 */
+  background: -o-linear-gradient(#5BE279, #49BB59); /* Opera 11.1 - 12.0 */
+  background: -moz-linear-gradient(#5BE279, #49BB59); /* Firefox 3.6 - 15 */
+  background: linear-gradient(#5BE279, #49BB59); /* 标准的语法 */
+}
+
+.ico_arrow,.ico_arrow_01 {
+  display: inline-block;
+  width: .07rem;
+  height: .07rem;
+  border-color: #fff;
+  border-style: solid;
+  border-width: 0 .01rem .01rem 0;
+  transform: rotate(-45deg);
+  -webkit-transform: rotate(-45deg);
+  -o-transform: rotate(-45deg);
+  -moz-transform: rotate(-45deg);
+}
+
+.ico_arrow_01 {
+  position: absolute;
+  top: .12rem;
+  right: .3rem;
+  display: inline-block;
+  width: .1rem;
+  height: .1rem;
+  border-color: #FD5C01;
+}
+
+.ico_love_mark_00,.ico_love_mark_01 {
+  display: inline-block;
+  width: .13rem;
+  height: .13rem;
+  background: url(../images/ico_love_mark.png) no-repeat;
+  background-size: .13rem;
+  vertical-align: middle;
+}
+
+.ico_love_mark_01 { background: url(../images/ico_love_mark_01.png) no-repeat; background-size: .13rem; }
+
+.rank_table,.rank_table_welfare {
+  width: 100%;
+  text-align: center;
+}
+
+.rank_table td{
+  padding: .13rem 0 .07rem;
+  line-height: .12rem;
+  font-size:.12rem;
+  color:#939393;
+  text-align:center;
+  vertical-align: top;
+}
+
+.rank_table td img {
+  width: .29rem;
+  height: .29rem;
+  border-radius: 100%;
+  background-color: #8D8D8D;
+}
+
+.rank_table td:nth-child(2) {
+  text-align: left;
+  border-bottom: .01rem solid #EEEEEE;
+}
+
+/*公益排行榜*/
+.rank_table_welfare td {
+  padding: .08rem 0;
+  line-height: .12rem;
+  font-size:.12rem;
+  color:#000;
+  text-align:center;
+}
+
+.rank_table_welfare td img {
+  width: .32rem;
+  height: .32rem;
+  border-radius: 100%;
+  background-color: #CFCFCF;
+}
+
+.rank_table_welfare td:nth-child(3) {
+  padding: 0 .2rem 0 .1rem;
+  text-align: left;
+}
+
+.ico_prize_00,.ico_prize_01,.ico_prize_02 {
+  display: inline-block;
+  width: .25rem;
+  height: .3rem;
+  vertical-align: middle;
+}
+
+.ico_prize_00 { background: url(../images/ico_prize_00.png) no-repeat; background-size: .25rem; }
+.ico_prize_01 { background: url(../images/ico_prize_01.png) no-repeat; background-size: .25rem; }
+.ico_prize_02 { background: url(../images/ico_prize_02.png) no-repeat; background-size: .25rem; }
+
+/*分页*/
+.page_box { text-align: center;margin-left: -0.02rem; }
+
+.page_box .page_item {
+  display: inline-block;
+  width: 0.26rem;
+  height: 0.26rem;
+  line-height: 0.26rem;
+  text-align: center;
+  background: #F5F6F8;
+  color: #444444;
+  font-size: 0.12rem;
+  border-radius: 0.05rem;
+  margin-left: 0.02rem;
+}
+
+.public_welfare_love {
+  display: inline-block;
+  width: .52rem;
+  height: .47rem;
+  background: url(../images/ico_love.png) no-repeat;
+  background-size: .52rem;
+  vertical-align: middle;
+}
+
+.title_project_box {
+  border-bottom: .01rem solid #CFCFCF;
+  font-size: 0;
+  letter-spacing: 0;
+  text-align: center;
+  margin-left: -.06rem;
+}
+
+.title_project_box .box_item {
+  display: inline-block;
+  padding: 0 .05rem;
+  font-size: .14rem;
+  color: #000000;
+  line-height: .38rem;
+  letter-spacing: 0;
+  margin-left: .06rem;
+}
+
+.title_project_box .current.box_item {
+  color: #EF4844;
+  border-bottom: .04rem solid #EF4844;
+  border-radius: .02rem;
+  margin-bottom: -.025rem;
+}
+
+/*返回顶部*/
+.fixed_scroll_top {
+  display: none;
+  position: fixed;
+  bottom: 1.2rem;
+  right: .14rem;
+}
+
+.ico_scroll_top {
+  display: inline-block;
+  width: .45rem;
+  height: .45rem;
+  background: url(../images/ico_scroll_top.png) no-repeat;
+  background-size: .45rem;
+  cursor: pointer;
+}
+
+/*底部菜单栏*/
+.fix_bottom {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  z-index: 5;
+}
+
+.bottom_nav {
+  padding: .07rem 0 .1rem;
+  text-align: center;
+  line-height: 16px;
+  background-color: #FAFBFF;
+  border-top: .01rem solid #E2E3E7;
+}
+
+.bottom_nav_1,.bottom_nav_2,.bottom_nav_3,.bottom_nav_4 {
+  display: inline-block;
+  height: 0.16rem;
+  vertical-align: middle;
+}
+
+.bottom_nav_1 {
+  width: 0.17rem;
+  background: url(../images/ico_bottom_nav1.png) no-repeat;
+  background-size: 0.17rem;
+}
+
+.bottom_nav_2 {
+  width: 0.21rem;
+  background: url(../images/ico_bottom_nav2.png) no-repeat;
+  background-size: 0.21rem;
+}
+
+
+.bottom_nav_3 {
+  width: 0.17rem;
+  background: url(../images/ico_bottom_nav3.png) no-repeat;
+  background-size: 0.17rem;
+}
+
+.bottom_nav_4 {
+  width: 0.17rem;
+  background: url(../images/ico_bottom_nav4.png) no-repeat;
+  background-size: 0.17rem;
+}
+
+.current .bottom_nav_1 { background: url(../images/ico_bottom_nav1_1.png) no-repeat; background-size: .17rem; }
+.current .bottom_nav_2 { background: url(../images/ico_bottom_nav2_2.png) no-repeat; background-size: .21rem; }
+.current .bottom_nav_3 { background: url(../images/ico_bottom_nav3_3.png) no-repeat; background-size: .17rem; }
+.current .bottom_nav_4 { background: url(../images/ico_bottom_nav4_4.png) no-repeat; background-size: .17rem; }
+
+.bottom_nav a span {
+  display: block;
+  padding-top: .06rem;
+  color: #888888;
+  font-size: 0.12rem;
+}
+
+a.current span { color: #FE5802; }
+
+/*弹窗*/
+.bomb_box_wrap {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1003;
+  background: rgba(0,0,0,.6);
+  overflow: auto;
+}
+.bomb_box {
+  position: relative;
+  top: 50%;
+  width: 90%;
+  max-width: 3.6rem;
+  background-color: #fff;
+  margin: 0 auto;
+  border-radius: .08rem;
+}
+
+.bomb_box_text {
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  padding: .25rem .2rem;
+  font-size: .12rem;
+  color: #444444;
+}
+
+.btn_colse_bomb_box {
+  position: absolute;
+  top: -.43rem;
+  right: .08rem;
+  width: .25rem;
+  height: .43rem;
+  background: url(../images/ico_close.png) no-repeat;
+  background-size: .25rem;
+}
+
+.animation_1 {
+  -webkit-animation: right_to_left .3s;
+  animation: right_to_left .3s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+}
+.animation_2 {
+  -webkit-animation: left_to_right .3s;
+  animation: left_to_right .3s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+}
+
+@-webkit-keyframes right_to_left {
+  from {opacity: 0; -webkit-transform: translateX(4rem); transform: translateX(4rem);}
+  to {opacity: 1; -webkit-transform: translateX(0); transform: translateX(0);}
+}
+@keyframes right_to_left {
+  from {opacity: 0; -webkit-transform: translateX(4rem); transform: translateX(4rem);}
+  to {opacity: 1; -webkit-transform: translateX(0); transform: translateX(0);}
+}
+
+@-webkit-keyframes left_to_right {
+  from {/*opacity: 1; -webkit-transform: translateX(0); transform: translateX(0);*/}
+  to {opacity: 0; -webkit-transform: translateX(-4rem); transform: translateX(-4rem);}
+}
+@keyframes left_to_right {
+  from {/*opacity: 1; -webkit-transform: translateX(0); transform: translateX(0);*/}
+  to {opacity: 0; -webkit-transform: translateX(-4rem); transform: translateX(-4rem);}
+}
+
+/*修改*/
+.save_prompt_img {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: .38rem;
+  line-height: .38rem;
+  background: rgba(105,127,125,0.6);
+  z-index: 5;
+}
+
+.medal_voyager_fixed {
+  position: fixed;
+  right: .1rem;
+  top: .1rem;
+  z-index: 6;
+}
+
+.ico_voyager_medal {
+  display: inline-block;
+  width: .88rem;
+  height: .67rem;
+  background: url(../images/ico_medal_voyager_01.png) no-repeat;
+  background-size: .88rem;
+}
+
+.current .ico_voyager_medal {
+  background: url(../images/ico_medal_voyager_00.png) no-repeat;
+  background-size: .88rem;
+}
+
+
+.ico_activities_that {
+  display: inline-block;
+  width: .1rem;
+  height: .07rem;
+  background: url(../images/ico_activities_that.png) no-repeat;
+  background-size: .1rem;
+  vertical-align: middle;
+}

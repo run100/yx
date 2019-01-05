@@ -1,0 +1,27 @@
+
+/*新闻轮播1*/
+.wF_progress{position:relative;width:100%;height:450px;z-index:1;top: -30px;}
+.wF_progress .wjy_pic{position:relative;width:100%;height:100%;overflow:hidden;z-index:2;}
+.wjy_pic_ul li{display:inline;width:100%;height:100%;float:left;text-align: center;}
+.wF_progress .wjy_pic .active{z-index:2;}
+.wF_progress .wjy_txt{display: none;position:absolute;left:0;bottom:0;width:100%;height:45px;line-height:45px;overflow:hidden;z-index:3;text-align: center;}
+.wjy_txt li{display:none;}
+.wjy_txt li.active{display:block;,margin: 0 auto;}
+.wjy_txt h3{ padding:0 15px;font-size:18px;font-weight:normal;font-family:Microsoft YaHei,SimHei;color: #fff;}
+.wjy_txt_c {position: relative; z-index: 2; }
+.wjy_txt_bg {position: absolute; top: 0; left: 0; display: block; width: 100%; height: 100%; background: #000; z-index: 1; opacity: .5; filter: alpha(opacity=50);
+}
+.wjy_txt .ell{width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:#666;line-height:22px;}
+.wjy_txt .ico_tag{display:inline-block;padding:0 5px;height:24px;margin-right:10px;line-height:24px;background:#BF4A08;color:#fff;font-size:14px;font-family:\5b8b\4f53;vertical-align:middle;}
+/*.wjy_hover .prev,.wjy_hover .next{background:url(../images/slider-arrows.png) no-repeat 0 -8px;}
+.wF_progress .prev,.wF_progress .next{display:inline-block;position:absolute;top:50%;z-index:5;width:32px;height:32px;opacity:0.6;cursor:pointer;margin-top: -16px;}
+.wF_progress .prev{left:5px;}
+.wF_progress .next{right:5px;background-position:-60px -8px;}*/
+/*.wF_progress .prev:hover,.wF_progress .next:hover{opacity:1;}*/
+
+.wF_progress .wjy_num{position:relative;z-index:11;text-align:center;margin-top: -35px;_position: absolute;_width:100%;padding-right: 15px;}
+.wF_progress .wjy_num ul {display: inline-block;*display: inline;*zoom: 1;}
+.wF_progress .wjy_num li{display:inline;float:left;margin-left:5px;overflow:hidden;cursor:pointer;}
+.wF_progress .wjy_num_pro{background-color:#999999;width: 77px;height: 5px;display: inline-block;}
+.wF_progress .active .wjy_num_pro {background-color: #FC6C38;}
+.wjy_pic ul{position:relative;}

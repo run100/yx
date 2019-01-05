@@ -1,0 +1,32 @@
+#!/bin/bash
+
+cd /var/www
+rm -rf storage/app/public
+ln -s /data/uploads storage/app/public
+chmod 777 -R storage bootstrap/cache
+
+rm -rf storage/logs
+ln -fs /var/log/zhuanti storage/logs
+touch /var/log/zhuanti/laravel.log
+touch /var/log/zhuanti/lumen.log
+touch /var/log/zhuanti/wechat.log
+touch /var/log/nginx/access.log
+touch /var/log/php/php_error.log
+
+chmod a+rw /var/log/zhuanti/laravel.log /var/log/zhuanti/lumen.log /var/log/zhuanti/wechat.log /var/log/nginx/access.log /var/log/php/php_error.log
+
+
+cp .env.prod .env
+cp php.ini.prod php.ini
+cp nginx.params.prod nginx.params
+cp www.params.prod www.params
+
+git submodule init
+git submodule update
+
+./artisan config:cache
+./artisan route:cache
+./artisan optimize
+
+touch /root/.app_laravel_inited
+

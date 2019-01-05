@@ -1,0 +1,97 @@
+<?php
+/**
+ * Created by PhpStorm.
+ * User: guxy
+ * Date: 2017/10/23
+ * Time: 下午9:47
+ */
+
+namespace App\Features\{{namespace}}\Controllers;
+
+
+use App\Http\Controllers\BaseController;
+use App\Models\CommonVoteOption;
+use Illuminate\Http\Request;
+
+class Controller extends BaseController
+{
+    public function index(Request $request)
+    {
+        $params = [];
+        $search = $request->get('search');
+        $sort = $request->get('sort', 'num');
+        $sort = empty($sort) ? 'num' : $sort;
+
+
+        $voteId = 391;
+        $params = compact('search', 'sort');
+        $data = compact('params');
+        $query = CommonVoteOption::where('vote_id', $voteId);
+        if ($search) {
+            $query->where(function($query) use ($search) {
+                $query->where('name', 'LIKE', "%$search%");
+                $query->orWhere('vote_num', 'LIKE', "%$search%");
+            });
+        }
+
+        if ($sort == 'vote') {
+            $query->orderBy('vote_amount', 'desc');
+        }
+
+        $query->orderBy('id', 'desc');
+
+        $pageSize = 4;
+        $data['users'] = $query->paginate($pageSize);
+        $data['users']->appends($params);
+
+        return $data;
+    }
+
+    public function rules()
+    {
+        return [];
+    }
+
+    public function ranking()
+    {
+        $pageSize = 4;
+        $voteId = 391;
+        $data = [];
+        $data['users'] = CommonVoteOption::where('vote_id', $voteId)
+            ->orderBy('vote_amount', 'desc')
+            ->paginate($pageSize);
+        return $data;
+    }
+
+    public function register(Request $request)
+    {
+        if (!$request->isMethod('post')) {
+            return [];
+        }
+
+        $voteId = 391;
+        $request->validate([
+            'name' => 'required',
+            'phone' => 'required|unique:common_vote_option,phone,NULL,id,vote_id,'.$voteId,
+            'email' => 'email',
+            'xuanyan' => 'min:20|max:200'
+        ]);
+
+        $error = CommonVoteOption::store($voteId, $request);
+        if ($error) {
+            return response()->json(['message' => $error]);
+        }
+
+        return response()->json(['message' => '报名成功', 'status' => 0]);
+
+    }
+
+    public function details(Request $request)
+    {
+        $id = $request->get('id');
+
+        $data = [];
+        $data['user'] = CommonVoteOption::findOrFail($id);
+        return $data;
+    }
+}

@@ -1,0 +1,40 @@
+{
+  "index_mode": "v2",
+  "keys":
+  {
+    "env":
+    {
+      "alias": "",
+      "caseSensitive": false,
+      "chn": false,
+      "doc_value": true,
+      "token": [",", " ", "'", "\"", ";", "=", "(", ")", "[", "]", "{", "}", "?", "@", "&", "<", ">", "/", ":", "\n", "\t", "\r"],
+      "type": "text"
+    },
+    "level":
+    {
+      "alias": "",
+      "caseSensitive": false,
+      "chn": false,
+      "doc_value": true,
+      "token": [",", " ", "'", "\"", ";", "=", "(", ")", "[", "]", "{", "}", "?", "@", "&", "<", ">", "/", ":", "\n", "\t", "\r"],
+      "type": "text"
+    },
+    "msg": {
+      "alias": "",
+      "caseSensitive": false,
+      "chn": false,
+      "doc_value": true,
+      "token": [",", " ", "'", "\"", ";", "=", "(", ")", "[", "]", "{", "}", "?", "@", "&", "<", ">", "/", ":", "\n", "\t", "\r"],
+      "type": "text"
+    }
+  },
+  "line":
+  {
+    "caseSensitive": false,
+    "chn": false,
+    "token": [",", " ", "'", "\"", ";", "=", "(", ")", "[", "]", "{", "}", "?", "@", "&", "<", ">", "/", ":", "\t"]
+  },
+  "storage": "pg",
+  "ttl": 2
+}

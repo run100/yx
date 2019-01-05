@@ -1,0 +1,20 @@
+zhuanti: &phprunner
+  restart: always
+  restart: always
+  #build: .
+  image: wjdocker.lab/wanjia/zhuanti
+  ports:
+    - 9680:80
+  volumes:                                        
+    - ~/Downloads/uploads:/data/uploads                        #此处 uploads 表示阿里容器服务中『数据卷』的卷名
+    - $PWD:/var/www
+    - ~/Downloads/logs:/var/log/nginx
+    - ~/Downloads/logs:/var/log/php
+  environment: &phprunner-env
+    APP_GIT_URL: git:cfgxy/zhuanti.git
+    APP_GIT_BRANCH: master
+    APP_INIT_SCRIPT: /usr/local/bin/app_init
+    APP_START_SCRIPT: /var/www/docker/app_start
+    PUBLISH_SSH_KEY: |
+      -----BEGIN RSA PRIVATE KEY-----
+      -----END RSA PRIVATE KEY-----

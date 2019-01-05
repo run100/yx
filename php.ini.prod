@@ -1,0 +1,24 @@
+[opcache]
+opcache.memory_consumption=4096
+opcache.interned_strings_buffer=8
+opcache.max_accelerated_files=10240
+opcache.revalidate_freq=2
+opcache.fast_shutdown=1
+opcache.enable=1
+opcache.enable_cli=0
+opcache.enable_file_override=1
+
+
+[Date]
+date.timezone = Asia/Shanghai
+
+
+
+memory_limit = 2048M
+display_errors = off
+error_log = /var/log/php/php_error.log
+log_errors = on
+upload_max_filesize = 8M
+max_execution_time = 180
+max_input_time = 180
+

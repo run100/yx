@@ -1,0 +1,75 @@
+#!/bin/bash
+NSERVICE=zhuanti
+PROD_DOCKER_HOST=tcp://master3g10.cs-cn-hangzhou.aliyun.com:20123
+PROD_DOCKER_CERT_PATH=$HOME/.ssh/docker/zhuanti
+
+if [[ "$1" == "up" ]]; then
+  $0 pull
+  $0 build
+fi
+
+if [[ "$1" == "push" ]]; then
+  if [[ "$2" == "wjdocker" ]]; then
+    docker tag "zhuanti_zhuanti" wjdocker.lab/wanjia/zhuanti
+    docker push wjdocker.lab/wanjia/zhuanti
+  else
+    docker tag "zhuanti_zhuanti" registry.cn-hangzhou.aliyuncs.com/hudong/zhuanti:latest
+    docker push registry.cn-hangzhou.aliyuncs.com/hudong/zhuanti:latest
+  fi
+  exit
+fi
+
+if [[ "$1" == "--prod" ]]; then
+  if [[ "$2" =~ ^(shell|attach|inspect|port|stats|top|ps)$ ]]; then
+    SH=$4
+    if [[ "$SH" == "" ]]; then
+      SH=/bin/bash
+    fi
+    CT=$3
+    if [[ "$CT" == "" ]]; then
+      CT=zhuanti
+    fi
+
+    if [[ "$CT" =~ _[0-9]+$ ]]; then
+      echo
+    else
+      CT=${CT}_1
+    fi
+
+    if [[ "$2" == "shell" ]]; then
+      DOCKER_TLS_VERIFY="1" DOCKER_CERT_PATH="$PROD_DOCKER_CERT_PATH" DOCKER_HOST="$PROD_DOCKER_HOST" docker exec -ti ${NSERVICE}_${CT} $SH
+    elif [[ "$2" == "ps" ]]; then
+      DOCKER_TLS_VERIFY="1" DOCKER_CERT_PATH="$PROD_DOCKER_CERT_PATH" DOCKER_HOST="$PROD_DOCKER_HOST" docker ps $3
+    elif [[ "$2" =~ ^(attach|inspect|port|stats|top)$ ]]; then
+      DOCKER_TLS_VERIFY="1" DOCKER_CERT_PATH="$PROD_DOCKER_CERT_PATH" DOCKER_HOST="$PROD_DOCKER_HOST" docker $2 ${NSERVICE}_${CT}
+    fi
+    exit
+  fi
+else
+  if [[ "$1" =~ ^(shell|attach|inspect|port|stats|top)$ ]]; then
+    SH=$3
+    if [[ "$SH" == "" ]]; then
+      SH=/bin/bash
+    fi
+    CT=$2
+    if [[ "$CT" == "" ]]; then
+      CT=zhuanti
+    fi
+
+    if [[ "$CT" =~ _[0-9]+$ ]]; then
+      echo
+    else
+      CT=${CT}_1
+    fi
+
+    if [[ "$1" == "shell" ]]; then
+      docker exec -ti ${NSERVICE}_${CT} $SH
+    elif [[ "$1" =~ ^(attach|inspect|port|stats|top)$ ]]; then
+      docker $1 ${NSERVICE}_${CT}
+    fi
+    exit
+  fi
+fi
+
+docker-compose -p $NSERVICE -f docker/docker-compose.yml $*
+

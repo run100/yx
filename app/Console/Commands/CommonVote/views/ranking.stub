@@ -1,0 +1,56 @@
+@extends('zhuanti::{{name}}.layout')
+
+@section('title', 'ranking')
+
+@section('head')
+<meta name="wanjia-data" content="Controller@ranking" />
+@endsection
+
+@section('content')
+  <div class="pl15 pr15">
+    <table class="rank_table mt5 mb5" border="0" cellspacing="0" cellpadding="0" width="100%" align="center">
+      <colgroup>
+        <col style="width: 15%;" />
+        <col style="width: 30%" />
+        <col style="width: 30%;" />
+        <col style="width: 25%" />
+      </colgroup>
+      <tr>
+        <td>名次</td>
+        <td>编号</td>
+        <td>姓名</td>
+        <td><i class="ico_stars_2 "></i>星星数</td>
+      </tr>
+        @foreach($users as $user)
+      <tr>
+        <td>{{ ($users->currentPage()-1)*($users->perPage())+$loop->index+1 }}</td>
+        <td>{{ $user->vote_num }}</td>
+        <td>{{ $user->name }}</td>
+        <td>{{ $user->vote_amount }}</td>
+      </tr>
+      @endforeach
+
+    </table>
+  </div>
+
+<div class="wrap">
+  <div class="fenye">
+    <a target="_self" href="{{ $users->url(1) }}">首页</a>
+    <a target="_self" href="{{ $users->previousPageUrl() ?? $users->url(1) }}">上页</a>
+    <select class="PropelPagerForm">
+        @for($i=1; $i<=$users->lastPage(); $i++)
+        <option value="{{$i}}" {{ $i==$users->currentPage() ? 'selected' : '' }}>{{$i}}</option>
+        @endfor
+    </select>
+    <a target="_self" href="{{ $users->nextPageUrl() ?? $users->url($users->lastPage()) }}">下页</a>
+    <a target="_self" href="{{ $users->url($users->lastPage())}}">末页</a>
+  </div>
+</div>
+<script>
+    $('.PropelPagerForm').change(function () {
+        var url = '{!! $users->url(1) !!}';
+        var page = $(this).val();
+        location.href = url.replace('page=1', 'page='+page);
+    })
+</script>
+@endsection

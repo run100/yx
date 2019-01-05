@@ -1,0 +1,46 @@
+{
+  "configName": "acslog-zhuanti-accesslog",
+  "inputDetail":
+  {
+    "adjustTimezone": false,
+    "delayAlarmBytes": 0,
+    "delaySkipBytes": 0,
+    "discardNonUtf8": false,
+    "discardUnmatch": true,
+    "dockerFile": false,
+    "enableRawLog": false,
+    "enableTag": false,
+    "fileEncoding": "utf8",
+    "filePattern": "access.log",
+    "filterKey": [],
+    "filterRegex": [],
+    "key": ["ip", "time", "http_method", "path", "protocol", "status", "body_bytes_sent", "http_referer", "http_user_agent", "host", "http_x_forwarded_for", "request_time", "upstream_response_time"],
+    "localStorage": true,
+    "logBeginRegex": ".*",
+    "logPath": "/acs/log/zhuanti/accesslog",
+    "logTimezone": "",
+    "logType": "common_reg_log",
+    "maxDepth": 1000,
+    "maxSendRate": -1,
+    "mergeType": "topic",
+    "preserve": true,
+    "preserveDepth": 0,
+    "priority": 0,
+    "regex": "(\\S+)\\s-\\s-\\s\\[(.+)\\]\\s\"(\\S+)\\s(\\S+)\\s(\\S+)\"\\s(\\d+)\\s(\\d+)\\s\"([^\"]*)\"\\s\"([^\"]+)\"\\s\"([^\"]+)\"\\s\"([^\"]+)\"\\s([0-9.-]+)\\s([0-9.-]+)",
+    "sendRateExpire": 0,
+    "sensitive_keys": [],
+    "tailExisted": false,
+    "timeFormat": "%d/%b/%Y:%H:%M:%S %z",
+    "timeKey": "",
+    "topicFormat": "none"
+  },
+  "inputType": "file",
+  "logSample": "60.173.236.97 - - [22/Jun/2017:15:37:28 +0800] \"GET /client/ajax_check_weixin_online_msg HTTP/1.1\" 200 22 \"https://yunshang.365jia.cn/client/membercard\" \"Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/57.0.2987.133 Safari/537.36\" \"yunshang.365jia.cn\" \"60.173.236.97, 140.205.253.134\" 0.054 0.054",
+  "outputDetail":
+  {
+    "endpoint": "cn-hangzhou-intranet.log.aliyuncs.com",
+    "logstoreName": "acslog-zhuanti-accesslog",
+    "region": "cn-hangzhou"
+  },
+  "outputType": "LogService"
+}
